@@ -53,7 +53,7 @@ namespace cgLabs
             List<Figure> figureList = new List<Figure> {
                             qNose, qBody, qTailSquare, qEngBodyRight, qEngBodyLeft, qEngBodyRight, qEngBodyLeft,
                             qWingLeft, qWingRight, qTailThing, qTailLeft, qTailRight, tEngTopLeft, tEngTopRight,
-                            tTailLeft, tTailRight
+                            tTailLeft, tTailRight, qEngSlopLeft, qEngSlopRight
                         };
 
             foreach (Figure figure in figureList)
