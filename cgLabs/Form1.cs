@@ -22,11 +22,6 @@ namespace cgLabs
         {
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             Graphics g = this.CreateGraphics();
@@ -54,37 +49,17 @@ namespace cgLabs
 
             Triangle tTailLeft = new Triangle(14, 1, 19, 1, 19, 0);
             Triangle tTailRight = new Triangle(20, 1, 25, 1, 20, 0);
-            /*             
-                        List<Figure> figureList = new List<Figure> { 
-                            qNose, qBody, qTailSquare, q qTailLeft, qTailRight, 
-                        };
-                        figureList.Add();
-                        figureList.Add(
-                        figureList.Add(
-                        figureList.Add(
-                        figureList.Add(
-                        figureList.Add(
-                        figureList.Add(
-                        figureList.Add(
-                        figureList.Add(
-                        figureList.Add(*/
-            qTailSquare.draw(g, p);
-            qNose.draw(g, p);
-            qBody.draw(g, p);
-            qEngSlopRight.draw(g, p);
-            qEngSlopLeft.draw(g, p);
-            qEngBodyLeft.draw(g, p);
-            qEngBodyRight.draw(g, p);
-            qWingLeft.draw(g, p);
-            qWingRight.draw(g, p);
-            qTailThing.draw(g, p);
-            qTailLeft.draw(g, p);
-            qTailRight.draw(g, p);
 
-            tEngTopLeft.draw(g, p);
-            tEngTopRight.draw(g, p);
-            tTailLeft.draw(g, p);
-            tTailRight.draw(g, p);
+            List<Figure> figureList = new List<Figure> {
+                            qNose, qBody, qTailSquare, qEngBodyRight, qEngBodyLeft, qEngBodyRight, qEngBodyLeft,
+                            qWingLeft, qWingRight, qTailThing, qTailLeft, qTailRight, tEngTopLeft, tEngTopRight,
+                            tTailLeft, tTailRight
+                        };
+
+            foreach (Figure figure in figureList)
+            {
+                figure.draw(g, p);
+            }
         }
     }
 }

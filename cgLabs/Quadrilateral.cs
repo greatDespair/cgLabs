@@ -33,7 +33,7 @@ namespace cgLabs
             this.y4 = y4;
         }
 
-        public void draw(Graphics g, Pen p)
+        public override void draw(Graphics g, Pen p)
         {
             PointF[] points = new PointF[]
 {
