@@ -13,7 +13,18 @@ namespace cgLabs
         public static double ox { get; set; }
         public static double oy { get; set; }
         public double[][] Matrix { get; set; }
+        static Figure()
+        {
+            ox = 19.5;
+            oy = 14;
+
+        }
         public virtual void draw(Graphics g, Pen p)
+        {
+
+        }
+
+        public virtual void rotate(Graphics g, Pen p)
         {
 
         }

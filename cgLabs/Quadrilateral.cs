@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace cgLabs
 {
+
     public class Quadrilateral : Figure
     {
 
         public Quadrilateral(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
         {
+            Matrix = new double[4][];
             Matrix[0] = new double[2] { x1, y1 };
             Matrix[1] = new double[2] { x2, y2 };
             Matrix[2] = new double[2] { x3, y3 };
@@ -31,6 +33,11 @@ namespace cgLabs
                 new Point((int)Matrix[3][0]*10,(int)(30-Matrix[3][1])*10)
             };
             g.DrawPolygon(p, points);
+        }
+
+        public override void rotate(Graphics g, Pen p)
+        {
+            
         }
     }
 }
