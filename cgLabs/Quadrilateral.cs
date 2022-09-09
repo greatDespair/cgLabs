@@ -10,36 +10,26 @@ using System.Windows.Forms;
 
 namespace cgLabs
 {
-    internal class Quadrilateral:Figure
+    public class Quadrilateral : Figure
     {
-        public int x1 { get; set; }
-        public int y1 { get; set; }
-        public int x2 { get; set; }
-        public int y2 { get; set; }
-        public int x3 { get; set; }
-        public int y3 { get; set; }
-        public int x4 { get; set; }
-        public int y4 { get; set; }
 
-        public Quadrilateral(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
+        public Quadrilateral(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
         {
-            this.x1 = x1;
-            this.y1 = y1;
-            this.x2 = x2;
-            this.y2 = y2;
-            this.x3 = x3;
-            this.y3 = y3;
-            this.x4 = x4;
-            this.y4 = y4;
+            Matrix[0] = new double[2] { x1, y1 };
+            Matrix[1] = new double[2] { x2, y2 };
+            Matrix[2] = new double[2] { x3, y3 };
+            Matrix[3] = new double[2] { x4, y4 };
         }
 
         public override void draw(Graphics g, Pen p)
         {
             PointF[] points = new PointF[]
-{
-                new Point(x1*10,(30-y1)*10),new Point(x2*10,(30-y2)*10),
-                new Point(x3*10,(30-y3)*10),new Point(x4*10,(30-y4)*10)
-};
+            {
+                new Point((int)Matrix[0][0]*10,(int)(30-Matrix[0][1])*10),
+                new Point((int)Matrix[1][0]*10,(int)(30-Matrix[1][1])*10),
+                new Point((int)Matrix[2][0]*10,(int)(30-Matrix[2][1])*10),
+                new Point((int)Matrix[3][0]*10,(int)(30-Matrix[3][1])*10)
+            };
             g.DrawPolygon(p, points);
         }
     }

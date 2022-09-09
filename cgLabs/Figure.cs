@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace cgLabs
 {
-    abstract class Figure
+    public abstract class Figure
     {
+
+        public static double ox { get; set; }
+        public static double oy { get; set; }
+        public double[][] Matrix { get; set; }
         public virtual void draw(Graphics g, Pen p)
         {
 

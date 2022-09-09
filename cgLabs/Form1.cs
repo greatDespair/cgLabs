@@ -15,7 +15,6 @@ namespace cgLabs
         public Form1()
         {
             InitializeComponent();
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -60,6 +59,11 @@ namespace cgLabs
             {
                 figure.draw(g, p);
             }
+        }
+
+        private void rotate_Scroll(object sender, EventArgs e)
+        {
+
         }
     }
 }
