@@ -15,7 +15,7 @@ namespace cgLabs
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -51,6 +51,15 @@ namespace cgLabs
                 figure.scale(g, p, 4);
             }
 
+            rotateLeft.Enabled = true;
+            rotateRight.Enabled = true;
+            scaleDown.Enabled = true;
+            scaleUp.Enabled = true;
+            upButton.Enabled = true;
+            downButton.Enabled = true;
+            rightButton.Enabled = true;
+            leftButton.Enabled = true;
+            button1.Enabled = false;
         }
 
         private void leftButton_Click(object sender, EventArgs e)
