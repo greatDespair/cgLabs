@@ -23,10 +23,30 @@ namespace cgLabs
         {
 
         }
-
-        public virtual void rotate(Graphics g, Pen p)
+        public virtual void clear(Graphics g)
         {
 
         }
+
+        public virtual void rotate(Graphics g, Pen p, int value)
+        {
+
+        }
+
+        public virtual void moveX(Graphics g, Pen p, int value)
+        {
+
+        }
+
+        public virtual void moveY(Graphics g, Pen p, int value)
+        {
+
+        }
+
+        public virtual void scale(Graphics g, Pen p, int value)
+        {
+
+        }
+
     }
 }

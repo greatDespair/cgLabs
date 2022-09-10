@@ -30,7 +30,49 @@ namespace cgLabs
             };
             g.DrawPolygon(p, points);
         }
-        public override void rotate(Graphics g, Pen p)
+        public override void moveX(Graphics g, Pen p, int value)
+        {
+            Matrix[0][0] += value;
+            Matrix[1][0] += value;
+            Matrix[2][0] += value;
+
+            PointF[] points = new PointF[]
+            {
+                new Point((int)(Matrix[0][0])*10,(int)(30-Matrix[0][1])*10),
+                new Point((int)(Matrix[1][0])*10,(int)(30-Matrix[1][1])*10),
+                new Point((int)(Matrix[2][0])*10,(int)(30-Matrix[2][1])*10)
+            };
+            g.DrawPolygon(p, points);
+        }
+
+        public override void moveY(Graphics g, Pen p, int value)
+        {
+            Matrix[0][1] += value;
+            Matrix[1][1] += value;
+            Matrix[2][1] += value;
+            PointF[] points = new PointF[]
+            {
+                new Point((int)Matrix[0][0]*10,(int)(30 - Matrix[0][1])*10),
+                new Point((int)Matrix[1][0]*10,(int)(30 - Matrix[1][1])*10),
+                new Point((int)Matrix[2][0]*10,(int)(30 - Matrix[2][1])*10)
+            };
+            g.DrawPolygon(p, points);
+        }
+
+        public override void rotate(Graphics g, Pen p, int degree)
+        {
+            double angle = (double)degree * Math.PI / 180;
+            for (int i = 0; i < 3; i++)
+            {
+                double tempX = Matrix[i][0] - ox;
+                double tempY = Matrix[i][1] - oy;
+                Matrix[i][0] = tempX * Math.Cos(angle) - tempY * Math.Sin(angle) + ox;
+                Matrix[i][1] = tempX * Math.Sin(angle) + tempY * Math.Cos(angle) + oy;
+            }
+            this.draw(g, p);
+        }
+
+        public override void scale(Graphics g, Pen p, int value)
         {
 
         }

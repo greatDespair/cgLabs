@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.rotate = new System.Windows.Forms.TrackBar();
             this.scale = new System.Windows.Forms.TrackBar();
-            this.moveX = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.moveY = new System.Windows.Forms.TrackBar();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.rotate)).BeginInit();
+            this.rightButton = new System.Windows.Forms.Button();
+            this.leftButton = new System.Windows.Forms.Button();
+            this.upButton = new System.Windows.Forms.Button();
+            this.downButton = new System.Windows.Forms.Button();
+            this.rotateLeft = new System.Windows.Forms.Button();
+            this.rotateRight = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.scale)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.moveX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.moveY)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -59,15 +59,6 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // rotate
-            // 
-            this.rotate.Location = new System.Drawing.Point(135, 652);
-            this.rotate.Maximum = 360;
-            this.rotate.Name = "rotate";
-            this.rotate.Size = new System.Drawing.Size(630, 45);
-            this.rotate.TabIndex = 2;
-            this.rotate.Scroll += new System.EventHandler(this.rotate_Scroll);
-            // 
             // scale
             // 
             this.scale.Location = new System.Drawing.Point(135, 703);
@@ -77,18 +68,11 @@
             this.scale.TabIndex = 3;
             this.scale.Value = 1;
             // 
-            // moveX
-            // 
-            this.moveX.Location = new System.Drawing.Point(252, 754);
-            this.moveX.Name = "moveX";
-            this.moveX.Size = new System.Drawing.Size(513, 45);
-            this.moveX.TabIndex = 4;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(11, 652);
+            this.label1.Location = new System.Drawing.Point(12, 649);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 25);
             this.label1.TabIndex = 5;
@@ -104,13 +88,6 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Масштаб";
             // 
-            // moveY
-            // 
-            this.moveY.Location = new System.Drawing.Point(252, 805);
-            this.moveY.Name = "moveY";
-            this.moveY.Size = new System.Drawing.Size(513, 45);
-            this.moveY.TabIndex = 7;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -125,7 +102,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(11, 805);
+            this.label4.Location = new System.Drawing.Point(366, 781);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(217, 25);
             this.label4.TabIndex = 9;
@@ -163,33 +140,99 @@
             this.panel4.Size = new System.Drawing.Size(1, 568);
             this.panel4.TabIndex = 13;
             // 
+            // rightButton
+            // 
+            this.rightButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
+            this.rightButton.Location = new System.Drawing.Point(119, 793);
+            this.rightButton.Name = "rightButton";
+            this.rightButton.Size = new System.Drawing.Size(75, 45);
+            this.rightButton.TabIndex = 14;
+            this.rightButton.Text = ">";
+            this.rightButton.UseVisualStyleBackColor = true;
+            this.rightButton.Click += new System.EventHandler(this.rightButton_Click);
+            // 
+            // leftButton
+            // 
+            this.leftButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
+            this.leftButton.Location = new System.Drawing.Point(38, 793);
+            this.leftButton.Name = "leftButton";
+            this.leftButton.Size = new System.Drawing.Size(75, 45);
+            this.leftButton.TabIndex = 15;
+            this.leftButton.Text = "<";
+            this.leftButton.UseVisualStyleBackColor = true;
+            this.leftButton.Click += new System.EventHandler(this.leftButton_Click);
+            // 
+            // upButton
+            // 
+            this.upButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
+            this.upButton.Location = new System.Drawing.Point(619, 744);
+            this.upButton.Name = "upButton";
+            this.upButton.Size = new System.Drawing.Size(68, 45);
+            this.upButton.TabIndex = 16;
+            this.upButton.Text = "^";
+            this.upButton.UseVisualStyleBackColor = true;
+            this.upButton.Click += new System.EventHandler(this.upButton_Click);
+            // 
+            // downButton
+            // 
+            this.downButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
+            this.downButton.Location = new System.Drawing.Point(619, 795);
+            this.downButton.Name = "downButton";
+            this.downButton.Size = new System.Drawing.Size(68, 45);
+            this.downButton.TabIndex = 17;
+            this.downButton.Text = "v";
+            this.downButton.UseVisualStyleBackColor = true;
+            this.downButton.Click += new System.EventHandler(this.downButton_Click);
+            // 
+            // rotateLeft
+            // 
+            this.rotateLeft.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
+            this.rotateLeft.Location = new System.Drawing.Point(135, 639);
+            this.rotateLeft.Name = "rotateLeft";
+            this.rotateLeft.Size = new System.Drawing.Size(75, 45);
+            this.rotateLeft.TabIndex = 18;
+            this.rotateLeft.Text = "<";
+            this.rotateLeft.UseVisualStyleBackColor = true;
+            this.rotateLeft.Click += new System.EventHandler(this.rotateLeft_Click);
+            // 
+            // rotateRight
+            // 
+            this.rotateRight.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
+            this.rotateRight.Location = new System.Drawing.Point(216, 639);
+            this.rotateRight.Name = "rotateRight";
+            this.rotateRight.Size = new System.Drawing.Size(75, 45);
+            this.rotateRight.TabIndex = 19;
+            this.rotateRight.Text = ">";
+            this.rotateRight.UseVisualStyleBackColor = true;
+            this.rotateRight.Click += new System.EventHandler(this.rotateRight_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(777, 869);
+            this.Controls.Add(this.rotateRight);
+            this.Controls.Add(this.rotateLeft);
+            this.Controls.Add(this.downButton);
+            this.Controls.Add(this.upButton);
+            this.Controls.Add(this.leftButton);
+            this.Controls.Add(this.rightButton);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.moveY);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.moveX);
             this.Controls.Add(this.scale);
-            this.Controls.Add(this.rotate);
             this.Controls.Add(this.button1);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Laba #1. Akmashev, Kosenko, Sadykov, Chapaev";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.rotate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scale)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.moveX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.moveY)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -197,18 +240,21 @@
 
         #endregion
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TrackBar rotate;
         private System.Windows.Forms.TrackBar scale;
-        private System.Windows.Forms.TrackBar moveX;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TrackBar moveY;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button rightButton;
+        private System.Windows.Forms.Button leftButton;
+        private System.Windows.Forms.Button upButton;
+        private System.Windows.Forms.Button downButton;
+        private System.Windows.Forms.Button rotateLeft;
+        private System.Windows.Forms.Button rotateRight;
     }
 }
 
