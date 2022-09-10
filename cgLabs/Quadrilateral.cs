@@ -27,10 +27,10 @@ namespace cgLabs
         {
             PointF[] points = new PointF[]
             {
-                new Point((int)Matrix[0][0]*10,(int)(30-Matrix[0][1])*10),
-                new Point((int)Matrix[1][0]*10,(int)(30-Matrix[1][1])*10),
-                new Point((int)Matrix[2][0]*10,(int)(30-Matrix[2][1])*10),
-                new Point((int)Matrix[3][0]*10,(int)(30-Matrix[3][1])*10)
+                new Point((int)Matrix[0][0],(int)(Matrix[0][1])),
+                new Point((int)Matrix[1][0],(int)(Matrix[1][1])),
+                new Point((int)Matrix[2][0],(int)(Matrix[2][1])),
+                new Point((int)Matrix[3][0],(int)(Matrix[3][1]))
             };
             g.DrawPolygon(p, points);
         }
@@ -50,10 +50,10 @@ namespace cgLabs
 
             PointF[] points = new PointF[]
             {
-                new Point((int)(Matrix[0][0])*10,(int)(30-Matrix[0][1])*10),
-                new Point((int)(Matrix[1][0])*10,(int)(30-Matrix[1][1])*10),
-                new Point((int)(Matrix[2][0])*10,(int)(30-Matrix[2][1])*10),
-                new Point((int)(Matrix[3][0])*10,(int)(30-Matrix[3][1])*10)
+                new Point((int)(Matrix[0][0]),(int)(Matrix[0][1])),
+                new Point((int)(Matrix[1][0]),(int)(Matrix[1][1])),
+                new Point((int)(Matrix[2][0]),(int)(Matrix[2][1])),
+                new Point((int)(Matrix[3][0]),(int)(Matrix[3][1]))
             };
             g.DrawPolygon(p, points);
         }
@@ -67,10 +67,10 @@ namespace cgLabs
 
             PointF[] points = new PointF[]
             {
-                new Point((int)Matrix[0][0]*10,(int)(30-Matrix[0][1])*10),
-                new Point((int)Matrix[1][0]*10,(int)(30-Matrix[1][1])*10),
-                new Point((int)Matrix[2][0]*10,(int)(30-Matrix[2][1])*10),
-                new Point((int)Matrix[3][0]*10,(int)(30-Matrix[3][1])*10)
+                new Point((int)Matrix[0][0],(int)(Matrix[0][1])),
+                new Point((int)Matrix[1][0],(int)(Matrix[1][1])),
+                new Point((int)Matrix[2][0],(int)(Matrix[2][1])),
+                new Point((int)Matrix[3][0],(int)(Matrix[3][1]))
             };
             g.DrawPolygon(p, points);
         }
@@ -88,9 +88,16 @@ namespace cgLabs
             this.draw(g, p);
         }
 
-        public override void scale(Graphics g, Pen p, int value)
+        public override void scale(Graphics g, Pen p, double value)
         {
-
+            for (int i = 0; i < 4; i++)
+            {
+                double tempX = Matrix[i][0] - ox;
+                double tempY = Matrix[i][1] - oy;
+                Matrix[i][0] = (tempX) * value + ox;
+                Matrix[i][1] = (tempY) * value + oy;
+            }
+            this.draw(g, p);
         }
     }
 }

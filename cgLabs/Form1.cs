@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace cgLabs
@@ -29,34 +23,48 @@ namespace cgLabs
             Graphics g = this.CreateGraphics();
             Pen p = new Pen(Color.Black, 1);
 
+            clearGraphics(g);
+
             foreach (Figure figure in plane.figureList)
             {
                 figure.draw(g, p);
             }
+
+            clearGraphics(g);
+
+            foreach (Figure figure in plane.figureList)
+            {
+                figure.moveX(g, p, 250);
+            }
+            Figure.ox += 250;
+            clearGraphics(g);
+
+            foreach (Figure figure in plane.figureList)
+            {
+                figure.moveY(g, p, 250);
+            }
+            Figure.oy += 250;
+            clearGraphics(g);
+
+            foreach (Figure figure in plane.figureList)
+            {
+                figure.scale(g, p, 4);
+            }
+
         }
-
-        private void rotate_Scroll(object sender, EventArgs e)
-        {
-
-        }
-
-
 
         private void leftButton_Click(object sender, EventArgs e)
         {
             Graphics g = this.CreateGraphics();
             Pen p = new Pen(Color.Black, 1);
 
-            foreach (Figure figure in plane.figureList)
-            {
-                figure.clear(g);
-            }
+            clearGraphics(g);
 
             foreach (Figure figure in plane.figureList)
             {
-                figure.moveX(g, p, -2);
+                figure.moveX(g, p, -20);
             }
-            Figure.ox -= 2;
+            Figure.ox -= 20;
         }
 
         private void rightButton_Click(object sender, EventArgs e)
@@ -64,16 +72,13 @@ namespace cgLabs
             Graphics g = this.CreateGraphics();
             Pen p = new Pen(Color.Black, 1);
 
-            foreach (Figure figure in plane.figureList)
-            {
-                figure.clear(g);
-            }
+            clearGraphics(g);
 
             foreach (Figure figure in plane.figureList)
             {
-                figure.moveX(g, p, 2);
+                figure.moveX(g, p, 20);
             }
-            Figure.ox += 2;
+            Figure.ox += 20;
         }
 
         private void upButton_Click(object sender, EventArgs e)
@@ -81,16 +86,13 @@ namespace cgLabs
             Graphics g = this.CreateGraphics();
             Pen p = new Pen(Color.Black, 1);
 
-            foreach (Figure figure in plane.figureList)
-            {
-                figure.clear(g);
-            }
+            clearGraphics(g);
 
             foreach (Figure figure in plane.figureList)
             {
-                figure.moveY(g, p, 2);
+                figure.moveY(g, p, -20);
             }
-            Figure.oy += 2;
+            Figure.oy -= 20;
         }
 
 
@@ -99,16 +101,13 @@ namespace cgLabs
             Graphics g = this.CreateGraphics();
             Pen p = new Pen(Color.Black, 1);
 
-            foreach (Figure figure in plane.figureList)
-            {
-                figure.clear(g);
-            }
+            clearGraphics(g);
 
             foreach (Figure figure in plane.figureList)
             {
-                figure.moveY(g, p, -2);
+                figure.moveY(g, p, 20);
             }
-            Figure.oy -= 2;
+            Figure.oy += 20;
         }
 
         private void rotateLeft_Click(object sender, EventArgs e)
@@ -116,14 +115,11 @@ namespace cgLabs
             Graphics g = this.CreateGraphics();
             Pen p = new Pen(Color.Black, 1);
 
-            foreach (Figure figure in plane.figureList)
-            {
-                figure.clear(g);
-            }
+            clearGraphics(g);
 
             foreach (Figure figure in plane.figureList)
             {
-                figure.rotate(g, p, 30);
+                figure.rotate(g, p, 5);
             }
         }
 
@@ -132,14 +128,47 @@ namespace cgLabs
             Graphics g = this.CreateGraphics();
             Pen p = new Pen(Color.Black, 1);
 
-            foreach (Figure figure in plane.figureList)
-            {
-                figure.clear(g);
-            }
+            clearGraphics(g);
 
             foreach (Figure figure in plane.figureList)
             {
-                figure.rotate(g, p, -30);
+                figure.rotate(g, p, -5);
+            }
+        }
+
+        private void scaleDown_Click(object sender, EventArgs e)
+        {
+            Graphics g = this.CreateGraphics();
+            Pen p = new Pen(Color.Black, 1);
+
+            clearGraphics(g);
+
+            foreach (Figure figure in plane.figureList)
+            {
+                figure.scale(g, p, 0.5);
+            }
+
+        }
+
+        private void scaleUp_Click(object sender, EventArgs e)
+        {
+            Graphics g = this.CreateGraphics();
+            Pen p = new Pen(Color.Black, 1);
+
+            clearGraphics(g);
+
+            foreach (Figure figure in plane.figureList)
+            {
+                figure.scale(g, p, 2);
+            }
+
+        }
+
+        private void clearGraphics(Graphics g)
+        {
+            foreach (Figure figure in plane.figureList)
+            {
+                figure.clear(g);
             }
         }
     }

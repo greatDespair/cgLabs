@@ -43,7 +43,7 @@ namespace cgLabs
 
         }
 
-        public virtual void scale(Graphics g, Pen p, int value)
+        public virtual void scale(Graphics g, Pen p, double value)
         {
 
         }
