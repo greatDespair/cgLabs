@@ -12,7 +12,7 @@ namespace cgLabs
 
         public static double ox { get; set; }
         public static double oy { get; set; }
-        public double[][] Matrix { get; set; }
+        public double[][] MatrixP { get; set; }
         static Figure()
         {
             ox = 19.5;
