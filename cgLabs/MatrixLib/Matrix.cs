@@ -91,6 +91,12 @@ namespace cgLabs.MatrixLib
                 resMatrix[i] = new double[3];
             }
 
+            for(int j = 0; j < m.Length; j++)
+            {
+                m[j][0] -= ox;
+                m[j][1] -= oy;
+            }
+
             initializeScale(scale, ox, oy);
 
             for (int i = 0; i < m.Length; i++)
@@ -103,6 +109,13 @@ namespace cgLabs.MatrixLib
                     }
                 }
             }
+
+            for (int j = 0; j < m.Length; j++)
+            {
+                resMatrix[j][0] += ox;
+                resMatrix[j][1] += oy;
+            }
+
             return resMatrix;
         }
     }
