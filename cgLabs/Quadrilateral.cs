@@ -17,10 +17,10 @@ namespace cgLabs
         public Quadrilateral(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
         {
             MatrixP = new double[4][];
-            MatrixP[0] = new double[3] { x1, y1, 1 };
-            MatrixP[1] = new double[3] { x2, y2, 1 };
-            MatrixP[2] = new double[3] { x3, y3, 1 };
-            MatrixP[3] = new double[3] { x4, y4, 1 };
+            MatrixP[0] = new double[4] { x1, y1, 2, 1 };
+            MatrixP[1] = new double[4] { x2, y2, 2, 1 };
+            MatrixP[2] = new double[4] { x3, y3, 2, 1 };
+            MatrixP[3] = new double[4] { x4, y4, 2, 1 };
         }
 
         public override void draw(Graphics g, Pen p)
@@ -58,11 +58,11 @@ namespace cgLabs
             draw(g, p);
         }
 
-        public override void rotate(Graphics g, Pen p, int degree)
+        public override void rotate(Graphics g, Pen p, int degreeX, int degreeY, int degreeZ)
         { 
             Matrix lib = new Matrix();
 
-            Array.Copy(lib.rotateMatrix(MatrixP, degree, ox, oy), MatrixP, 4);
+            Array.Copy(lib.rotateMatrix(MatrixP, degreeX, degreeY, degreeZ, ox, oy, oz), MatrixP, 4);
 
             this.draw(g, p);
         }

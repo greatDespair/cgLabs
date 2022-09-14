@@ -51,13 +51,13 @@ namespace cgLabs
             {
                 figure.reflect(g, p);
             }
-
+/*
             clearGraphics(g);
 
             foreach (Figure figure in plane.figureList)
             {
                 figure.scale(g, p, 4);
-            }
+            }*/
             
             rotateLeft.Enabled = true;
             rotateRight.Enabled = true;
@@ -136,7 +136,7 @@ namespace cgLabs
 
             foreach (Figure figure in plane.figureList)
             {
-                figure.rotate(g, p, 5);
+                figure.rotate(g, p, 5, 0, 0);
             }
         }
 
@@ -149,7 +149,7 @@ namespace cgLabs
 
             foreach (Figure figure in plane.figureList)
             {
-                figure.rotate(g, p, -5);
+                figure.rotate(g, p, -5, 0, 0);
             }
         }
 
@@ -186,6 +186,58 @@ namespace cgLabs
             foreach (Figure figure in plane.figureList)
             {
                 figure.clear(g);
+            }
+        }
+
+        private void rotateLeftY_Click(object sender, EventArgs e)
+        {
+            Graphics g = this.CreateGraphics();
+            Pen p = new Pen(Color.Black, 1);
+
+            clearGraphics(g);
+
+            foreach (Figure figure in plane.figureList)
+            {
+                figure.rotate(g, p, 0, 5, 0);
+            }
+        }
+
+        private void rotateRightY_Click(object sender, EventArgs e)
+        {
+            Graphics g = this.CreateGraphics();
+            Pen p = new Pen(Color.Black, 1);
+
+            clearGraphics(g);
+
+            foreach (Figure figure in plane.figureList)
+            {
+                figure.rotate(g, p, 0, -5, 0);
+            }
+        }
+
+        private void rotateLeftZ_Click(object sender, EventArgs e)
+        {
+            Graphics g = this.CreateGraphics();
+            Pen p = new Pen(Color.Black, 1);
+
+            clearGraphics(g);
+
+            foreach (Figure figure in plane.figureList)
+            {
+                figure.rotate(g, p, 0, 0, 5);
+            }
+        }
+
+        private void rotateRightZ_Click(object sender, EventArgs e)
+        {
+            Graphics g = this.CreateGraphics();
+            Pen p = new Pen(Color.Black, 1);
+
+            clearGraphics(g);
+
+            foreach (Figure figure in plane.figureList)
+            {
+                figure.rotate(g, p, 0, 0, -5);
             }
         }
     }

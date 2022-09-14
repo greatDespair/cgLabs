@@ -12,12 +12,13 @@ namespace cgLabs
 
         public static double ox { get; set; }
         public static double oy { get; set; }
+        public static double oz { get; set; }
         public double[][] MatrixP { get; set; }
         static Figure()
         {
             ox = 19.5;
             oy = 14;
-
+            oz = 2;
         }
         public virtual void draw(Graphics g, Pen p)
         {
@@ -28,7 +29,7 @@ namespace cgLabs
 
         }
 
-        public virtual void rotate(Graphics g, Pen p, int value)
+        public virtual void rotate(Graphics g, Pen p, int degreeX, int degreeY, int degreeZ)
         {
 
         }
