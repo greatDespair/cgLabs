@@ -71,7 +71,7 @@ namespace cgLabs
         {
             Matrix lib = new Matrix();
 
-            Array.Copy(lib.scaleMatrix(MatrixP, value, ox, oy), MatrixP, 4);
+            Array.Copy(lib.scaleMatrix(MatrixP, value, ox, oy, oz), MatrixP, 4);
 
             this.draw(g, p);
         }
@@ -80,7 +80,7 @@ namespace cgLabs
         {
             Matrix lib = new Matrix();
 
-            Array.Copy(lib.reflectMatrix(MatrixP, ox, oy), MatrixP, 4);
+            Array.Copy(lib.reflectMatrix(MatrixP, ox, oy, oz), MatrixP, 4);
 
             this.draw(g, p);
         }

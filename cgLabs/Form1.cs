@@ -29,29 +29,29 @@ namespace cgLabs
             {
                 figure.draw(g, p);
             }
-
             clearGraphics(g);
+            /*
+                        
+                        foreach (Figure figure in plane.figureList)
+                        {
+                            figure.moveX(g, p, 250);
+                        }
+                        Figure.ox += 250;
+                        clearGraphics(g);
 
-            foreach (Figure figure in plane.figureList)
-            {
-                figure.moveX(g, p, 250);
-            }
-            Figure.ox += 250;
-            clearGraphics(g);
+                        foreach (Figure figure in plane.figureList)
+                        {
+                            figure.moveY(g, p, 250);
+                        }
+                        Figure.oy += 250;
 
-            foreach (Figure figure in plane.figureList)
-            {
-                figure.moveY(g, p, 250);
-            }
-            Figure.oy += 250;
-
-            clearGraphics(g);
-
+                        clearGraphics(g);
+            */
             foreach (Figure figure in plane.figureList)
             {
                 figure.reflect(g, p);
             }
-/*
+            /*
             clearGraphics(g);
 
             foreach (Figure figure in plane.figureList)
@@ -136,7 +136,7 @@ namespace cgLabs
 
             foreach (Figure figure in plane.figureList)
             {
-                figure.rotate(g, p, 5, 0, 0);
+                figure.rotate(g, p, 30, 0, 0);
             }
         }
 
@@ -149,7 +149,7 @@ namespace cgLabs
 
             foreach (Figure figure in plane.figureList)
             {
-                figure.rotate(g, p, -5, 0, 0);
+                figure.rotate(g, p, -30, 0, 0);
             }
         }
 
@@ -198,7 +198,7 @@ namespace cgLabs
 
             foreach (Figure figure in plane.figureList)
             {
-                figure.rotate(g, p, 0, 5, 0);
+                figure.rotate(g, p, 0, 30, 0);
             }
         }
 
@@ -211,7 +211,7 @@ namespace cgLabs
 
             foreach (Figure figure in plane.figureList)
             {
-                figure.rotate(g, p, 0, -5, 0);
+                figure.rotate(g, p, 0, -30, 0);
             }
         }
 
@@ -224,7 +224,7 @@ namespace cgLabs
 
             foreach (Figure figure in plane.figureList)
             {
-                figure.rotate(g, p, 0, 0, 5);
+                figure.rotate(g, p, 0, 0, 30);
             }
         }
 
@@ -237,7 +237,7 @@ namespace cgLabs
 
             foreach (Figure figure in plane.figureList)
             {
-                figure.rotate(g, p, 0, 0, -5);
+                figure.rotate(g, p, 0, 0, -30);
             }
         }
     }
