@@ -75,5 +75,14 @@ namespace cgLabs
 
             this.draw(g, p);
         }
+
+        public override void reflect(Graphics g, Pen p)
+        {
+            Matrix lib = new Matrix();
+
+            Array.Copy(lib.reflectMatrix(MatrixP, ox, oy), MatrixP, 4);
+
+            this.draw(g, p);
+        }
     }
 }

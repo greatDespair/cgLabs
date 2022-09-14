@@ -11,7 +11,15 @@ namespace cgLabs.MatrixLib
         private double[][] rotateM;
         private double[][] moveM;
         private double[][] scaleM;
+        private double[][] mirrorM;
 
+        public void initializeReflect()
+        {
+            mirrorM = new double[3][];
+            mirrorM[0] = new double[3] { -1, 0, 0 };
+            mirrorM[1] = new double[3] { 0, -1, 0 };
+            mirrorM[2] = new double[3] { 0, 0, 1 };
+        }
         public void initializeScale(double value, double ox, double oy)
         {
             scaleM = new double[3][];
@@ -35,6 +43,43 @@ namespace cgLabs.MatrixLib
             moveM[0] = new double[3] { 1, 0, 0 };
             moveM[1] = new double[3] { 0, 1, 0 };
             moveM[2] = new double[3] { valueX, valueY, 1 };
+        }
+
+        public double[][] reflectMatrix(double[][] m, double ox, double oy)
+        {
+            double[][] resMatrix = new double[m.Length][];
+            for (int i = 0; i < m.Length; i++)
+            {
+                resMatrix[i] = new double[3];
+            }
+
+            initializeReflect();
+
+            for (int j = 0; j < m.Length; j++)
+            {
+                m[j][0] -= ox;
+                m[j][1] -= oy;
+            }
+
+
+            for (int i = 0; i < m.Length; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    for (int k = 0; k < 3; k++)
+                    {
+                        resMatrix[i][j] += m[i][k] * mirrorM[k][j];
+                    }
+                }
+            }
+
+            for (int j = 0; j < m.Length; j++)
+            {
+                resMatrix[j][0] += ox;
+                resMatrix[j][1] += oy;
+            }
+
+            return resMatrix;
         }
 
         public double[][] rotateMatrix(double[][] m, int degree, double ox, double oy)

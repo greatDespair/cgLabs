@@ -44,13 +44,21 @@ namespace cgLabs
                 figure.moveY(g, p, 250);
             }
             Figure.oy += 250;
-            //clearGraphics(g);
 
-            /*foreach (Figure figure in plane.figureList)
+            clearGraphics(g);
+
+            foreach (Figure figure in plane.figureList)
+            {
+                figure.reflect(g, p);
+            }
+
+            clearGraphics(g);
+
+            foreach (Figure figure in plane.figureList)
             {
                 figure.scale(g, p, 4);
             }
-*/
+            
             rotateLeft.Enabled = true;
             rotateRight.Enabled = true;
             scaleDown.Enabled = true;

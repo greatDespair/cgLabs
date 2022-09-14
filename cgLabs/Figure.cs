@@ -48,5 +48,10 @@ namespace cgLabs
 
         }
 
+        public virtual void reflect(Graphics g, Pen p)
+        {
+
+        }
+
     }
 }
