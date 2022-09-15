@@ -14,13 +14,13 @@ namespace cgLabs
     public class Quadrilateral : Figure
     {
 
-        public Quadrilateral(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+        public Quadrilateral(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, double z)
         {
             MatrixP = new double[4][];
-            MatrixP[0] = new double[4] { x1, y1, 2, 1 };
-            MatrixP[1] = new double[4] { x2, y2, 2, 1 };
-            MatrixP[2] = new double[4] { x3, y3, 2, 1 };
-            MatrixP[3] = new double[4] { x4, y4, 2, 1 };
+            MatrixP[0] = new double[4] { x1, y1, z, 1 };
+            MatrixP[1] = new double[4] { x2, y2, z, 1 };
+            MatrixP[2] = new double[4] { x3, y3, z, 1 };
+            MatrixP[3] = new double[4] { x4, y4, z, 1 };
         }
 
         public override void draw(Graphics g, Pen p)
@@ -44,7 +44,7 @@ namespace cgLabs
         {
             Matrix lib = new Matrix();
 
-            Array.Copy(lib.moveMatrix(MatrixP, value, 0), MatrixP, 4);
+            Array.Copy(lib.moveMatrix(MatrixP, value, 0, 0), MatrixP, 4);
 
             draw(g, p);
         }
@@ -53,16 +53,32 @@ namespace cgLabs
         {
             Matrix lib = new Matrix();
 
-            Array.Copy(lib.moveMatrix(MatrixP, 0, value), MatrixP, 4);
+            Array.Copy(lib.moveMatrix(MatrixP, 0, value, 0), MatrixP, 4);
 
             draw(g, p);
         }
 
-        public override void rotate(Graphics g, Pen p, int degreeX, int degreeY, int degreeZ)
+        public override void rotateX(Graphics g, Pen p, int degreeX)
         { 
             Matrix lib = new Matrix();
+            
+            Array.Copy(lib.rotateMatrixX(MatrixP, degreeX, ox, oy, oz), MatrixP, 4);
 
-            Array.Copy(lib.rotateMatrix(MatrixP, degreeX, degreeY, degreeZ, ox, oy, oz), MatrixP, 4);
+            this.draw(g, p);
+        }
+        public override void rotateY(Graphics g, Pen p, int degreeY)
+        {
+            Matrix lib = new Matrix();
+
+            Array.Copy(lib.rotateMatrixY(MatrixP, degreeY, ox, oy, oz), MatrixP, 4);
+
+            this.draw(g, p);
+        }
+        public override void rotateZ(Graphics g, Pen p, int degreeZ)
+        {
+            Matrix lib = new Matrix();
+
+            Array.Copy(lib.rotateMatrixZ(MatrixP, degreeZ, ox, oy, oz), MatrixP, 4);
 
             this.draw(g, p);
         }

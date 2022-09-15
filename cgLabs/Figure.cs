@@ -18,7 +18,7 @@ namespace cgLabs
         {
             ox = 19.5;
             oy = 14;
-            oz = 2;
+            oz = 1;
         }
         public virtual void draw(Graphics g, Pen p)
         {
@@ -29,7 +29,15 @@ namespace cgLabs
 
         }
 
-        public virtual void rotate(Graphics g, Pen p, int degreeX, int degreeY, int degreeZ)
+        public virtual void rotateX(Graphics g, Pen p, int degreeX)
+        {
+
+        }
+        public virtual void rotateY(Graphics g, Pen p, int degreeY)
+        {
+
+        }
+        public virtual void rotateZ(Graphics g, Pen p, int degreeZ)
         {
 
         }

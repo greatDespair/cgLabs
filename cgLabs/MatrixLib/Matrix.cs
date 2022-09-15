@@ -27,35 +27,44 @@ namespace cgLabs.MatrixLib
             scaleM[0] = new double[4] { value, 0, 0, 0};
             scaleM[1] = new double[4] { 0, value, 0, 0};
             scaleM[2] = new double[4] { 0, 0, value, 0};
-            scaleM[3] = new double[4] { 0, 0, 0, value};
+            scaleM[3] = new double[4] { 0, 0, 0, 1};
         }
 
-        public void initializeRotate(int degreeX, int degreeY, int degreeZ, double ox, double oy, double oz)
+        public void initializeRotateX(int degree)
         {
-            double angleX = (double)degreeX * Math.PI / 180;
-            double angleY = (double)degreeY * Math.PI / 180;
-            double angleZ = (double)degreeZ * Math.PI / 180;
+            double angle = (double)degree * Math.PI / 180;
             rotateM = new double[4][];
-            /*rotateM[0] = new double[4] { Math.Cos(angleY), 0, -Math.Sin(angleY), 0 };
-            rotateM[1] = new double[4] {Math.Sin(angleX) * Math.Sin(angleY), Math.Cos(angleX), Math.Cos(angleY) * Math.Sin(angleX), 0 };
-            rotateM[2] = new double[4] { Math.Sin(angleY) * Math.Cos(angleX), -Math.Sin(angleX), Math.Cos(angleY) * Math.Cos(angleX), 0 };
-            rotateM[3] = new double[4] { ox * Math.Cos(angleY) + oy * Math.Sin(angleY) * Math.Sin(angleX) + oz * Math.Sin(angleY) * Math.Cos(angleX),
-                                         oy * Math.Cos(angleX) - oz * Math.Sin(angleX),
-                                       - ox * Math.Sin(angleY) + oy * Math.Cos(angleY) * Math.Sin(angleX) + oz * Math.Cos(angleY) * Math.Cos(angleX), 1};*/
-            rotateM[0] = new double[4] { Math.Cos(angleY), Math.Sin(angleY) * Math.Sin(angleX), -Math.Sin(angleY) * Math.Cos(angleX), 0 };
-            rotateM[1] = new double[4] {0, Math.Cos(angleX), Math.Sin(angleX), 0 };
-            rotateM[2] = new double[4] { Math.Sin(angleY), - Math.Cos(angleY) * Math.Sin(angleX), Math.Cos(angleY) * Math.Cos(angleX), 0 };
-            rotateM[3] = new double[4] {ox*(1 - Math.Cos(angleY)) - oz * Math.Sin(angleY),
-                                        - ox * Math.Sin(angleY) * Math.Sin(angleX) + oy * (1 - Math.Sin(angleX)) + oz * Math.Cos(angleY) * Math.Sin(angleX),
-                                        ox * Math.Sin(angleY) * Math.Cos(angleX) - oy * Math.Sin(angleX) + oz * (1 - Math.Cos(angleY) * Math.Cos(angleX)), 1};
-
+            rotateM[0] = new double[4] { 1, 0, 0, 0};
+            rotateM[1] = new double[4] { 0, Math.Cos(angle), Math.Sin(angle), 0 };
+            rotateM[2] = new double[4] { 0, - Math.Sin(angle), Math.Cos(angle), 0 };
+            rotateM[3] = new double[4] { 0, 0, 0, 1 };
         }
-        public void initializeMove(double valueX, double valueY)
+
+        public void initializeRotateY(int degree)
         {
-            moveM = new double[3][];
-            moveM[0] = new double[3] { 1, 0, 0 };
-            moveM[1] = new double[3] { 0, 1, 0 };
-            moveM[2] = new double[3] { valueX, valueY, 1 };
+            double angle = (double)degree * Math.PI / 180;
+            rotateM = new double[4][];
+            rotateM[0] = new double[4] { Math.Cos(angle), 0, -Math.Sin(angle), 0 };
+            rotateM[1] = new double[4] { 0, 1, 0, 0 };
+            rotateM[2] = new double[4] { Math.Sin(angle), 0, Math.Cos(angle), 0 };
+            rotateM[3] = new double[4] { 0, 0, 0, 1 };
+        }
+        public void initializeRotateZ(int degree)
+        {
+            double angle = (double)degree * Math.PI / 180;
+            rotateM = new double[4][];
+            rotateM[0] = new double[4] { Math.Cos(angle), Math.Sin(angle), 0, 0 };
+            rotateM[1] = new double[4] { -Math.Sin(angle), Math.Cos(angle), 0, 0 };
+            rotateM[2] = new double[4] { 0, 0, 1, 0 };
+            rotateM[3] = new double[4] { 0, 0, 0, 1 };
+        }
+        public void initializeMove(double valueX, double valueY, double valueZ)
+        {
+            moveM = new double[4][];
+            moveM[0] = new double[4] { 1, 0, 0, 0};
+            moveM[1] = new double[4] { 0, 1, 0, 0};
+            moveM[2] = new double[4] { 0, 0, 1, 0 };
+            moveM[3] = new double[4] { valueX, valueY, valueZ, 1 };
         }
 
         public double[][] reflectMatrix(double[][] m, double ox, double oy, double oz)
@@ -96,8 +105,77 @@ namespace cgLabs.MatrixLib
 
             return resMatrix;
         }
+        public double[][] rotateMatrixZ(double[][] m, int degreeZ, double ox, double oy, double oz)
+        {
+            double[][] resMatrix = new double[m.Length][];
+            for (int i = 0; i < m.Length; i++)
+            {
+                resMatrix[i] = new double[4];
+            }
 
-        public double[][] rotateMatrix(double[][] m, int degreeX, int degreeY, int degreeZ, double ox, double oy, double oz)
+            for (int j = 0; j < m.Length; j++)
+            {
+                m[j][0] -= ox;
+                m[j][1] -= oy;
+                m[j][2] -= oz;
+            }
+            initializeRotateZ(degreeZ);
+
+            for (int i = 0; i < m.Length; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    for (int k = 0; k < 4; k++)
+                    {
+                        resMatrix[i][j] += m[i][k] * rotateM[k][j];
+                    }
+                }
+            }
+
+            for (int j = 0; j < m.Length; j++)
+            {
+                resMatrix[j][0] += ox;
+                resMatrix[j][1] += oy;
+                resMatrix[j][2] += oz;
+            }
+            return resMatrix;
+        }
+        public double[][] rotateMatrixY(double[][] m, int degreeY, double ox, double oy, double oz)
+        {
+            double[][] resMatrix = new double[m.Length][];
+            for (int i = 0; i < m.Length; i++)
+            {
+                resMatrix[i] = new double[4];
+            }
+
+            for (int j = 0; j < m.Length; j++)
+            {
+                m[j][0] -= ox;
+                m[j][1] -= oy;
+                m[j][2] -= oz;
+            }
+            initializeRotateY(degreeY);
+
+            for (int i = 0; i < m.Length; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    for (int k = 0; k < 4; k++)
+                    {
+                        resMatrix[i][j] += m[i][k] * rotateM[k][j];
+                    }
+                }
+            }
+
+            for (int j = 0; j < m.Length; j++)
+            {
+                resMatrix[j][0] += ox;
+                resMatrix[j][1] += oy;
+                resMatrix[j][2] += oz;
+            }
+            return resMatrix;
+        }
+        public double[][] rotateMatrixX(double[][] m, int degreeX, double ox, double oy, double oz)
         {
             double[][] resMatrix = new double[m.Length][];
             for(int i = 0; i < m.Length; i++)
@@ -105,9 +183,15 @@ namespace cgLabs.MatrixLib
                 resMatrix[i] = new double[4];
             }
 
-            initializeRotate(degreeX, degreeY, degreeZ, ox, oy, oz);
+            for (int j = 0; j < m.Length; j++)
+            {
+                m[j][0] -= ox;
+                m[j][1] -= oy;
+                m[j][2] -= oz;
+            }
+            initializeRotateX(degreeX);
 
-            for(int i = 0; i < m.Length; i++)
+            for (int i = 0; i < m.Length; i++)
             {
                 for(int j = 0; j < 4; j++)
                 {
@@ -117,24 +201,31 @@ namespace cgLabs.MatrixLib
                     }
                 }
             }
+
+            for (int j = 0; j < m.Length; j++)
+            {
+                resMatrix[j][0] += ox;
+                resMatrix[j][1] += oy;
+                resMatrix[j][2] += oz;
+            }
             return resMatrix;
         }
 
-        public double[][] moveMatrix(double[][] m, double offsetX, double offsetY)
+        public double[][] moveMatrix(double[][] m, double offsetX, double offsetY, double offsetZ)
         {
             double[][] resMatrix = new double[m.Length][];
             for (int i = 0; i < m.Length; i++)
             {
-                resMatrix[i] = new double[3];
+                resMatrix[i] = new double[4];
             }
 
-            initializeMove(offsetX, offsetY);
+            initializeMove(offsetX, offsetY, offsetZ);
 
             for (int i = 0; i < m.Length; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < 4; j++)
                 {
-                    for (int k = 0; k < 3; k++)
+                    for (int k = 0; k < 4; k++)
                     {
                         resMatrix[i][j] += m[i][k] * moveM[k][j];
                     }
