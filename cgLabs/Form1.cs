@@ -25,7 +25,15 @@ namespace cgLabs
 
             clearGraphics(g);
 
-            foreach (Figure figure in plane.figureList)
+            foreach (Figure figure in plane.figureList1)
+            {
+                figure.draw(g, p);
+            }
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.draw(g, p);
+            }
+            foreach (Figure figure in plane.figureList3)
             {
                 figure.draw(g, p);
             }
@@ -47,7 +55,15 @@ namespace cgLabs
 
                         clearGraphics(g);
             */
-            foreach (Figure figure in plane.figureList)
+            foreach (Figure figure in plane.figureList1)
+            {
+                figure.reflect(g, p);
+            }
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.reflect(g, p);
+            }
+            foreach (Figure figure in plane.figureList3)
             {
                 figure.reflect(g, p);
             }
@@ -58,7 +74,7 @@ namespace cgLabs
             {
                 figure.scale(g, p, 4);
             }*/
-            
+
             rotateLeft.Enabled = true;
             rotateRight.Enabled = true;
             scaleDown.Enabled = true;
@@ -77,7 +93,15 @@ namespace cgLabs
 
             clearGraphics(g);
 
-            foreach (Figure figure in plane.figureList)
+            foreach (Figure figure in plane.figureList1)
+            {
+                figure.moveX(g, p, -20);
+            }
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.moveX(g, p, -20);
+            }
+            foreach (Figure figure in plane.figureList3)
             {
                 figure.moveX(g, p, -20);
             }
@@ -91,7 +115,15 @@ namespace cgLabs
 
             clearGraphics(g);
 
-            foreach (Figure figure in plane.figureList)
+            foreach (Figure figure in plane.figureList1)
+            {
+                figure.moveX(g, p, 20);
+            }
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.moveX(g, p, 20);
+            }
+            foreach (Figure figure in plane.figureList3)
             {
                 figure.moveX(g, p, 20);
             }
@@ -105,7 +137,15 @@ namespace cgLabs
 
             clearGraphics(g);
 
-            foreach (Figure figure in plane.figureList)
+            foreach (Figure figure in plane.figureList1)
+            {
+                figure.moveY(g, p, -20);
+            }
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.moveY(g, p, -20);
+            }
+            foreach (Figure figure in plane.figureList3)
             {
                 figure.moveY(g, p, -20);
             }
@@ -120,7 +160,16 @@ namespace cgLabs
 
             clearGraphics(g);
 
-            foreach (Figure figure in plane.figureList)
+            foreach (Figure figure in plane.figureList1)
+            {
+                figure.moveY(g, p, 20);
+            }
+
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.moveY(g, p, 20);
+            }
+            foreach (Figure figure in plane.figureList3)
             {
                 figure.moveY(g, p, 20);
             }
@@ -134,7 +183,15 @@ namespace cgLabs
 
             clearGraphics(g);
 
-            foreach (Figure figure in plane.figureList)
+            foreach (Figure figure in plane.figureList1)
+            {
+                figure.rotateX(g, p, 30);
+            }
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.rotateX(g, p, 30);
+            }
+            foreach (Figure figure in plane.figureList3)
             {
                 figure.rotateX(g, p, 30);
             }
@@ -147,7 +204,15 @@ namespace cgLabs
 
             clearGraphics(g);
 
-            foreach (Figure figure in plane.figureList)
+            foreach (Figure figure in plane.figureList1)
+            {
+                figure.rotateX(g, p, -30);
+            }
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.rotateX(g, p, -30);
+            }
+            foreach (Figure figure in plane.figureList3)
             {
                 figure.rotateX(g, p, -30);
             }
@@ -160,11 +225,18 @@ namespace cgLabs
 
             clearGraphics(g);
 
-            foreach (Figure figure in plane.figureList)
+            foreach (Figure figure in plane.figureList1)
             {
                 figure.scale(g, p, 0.5);
             }
-
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.scale(g, p, 0.5);
+            }
+            foreach (Figure figure in plane.figureList3)
+            {
+                figure.scale(g, p, 0.5);
+            }
         }
 
         private void scaleUp_Click(object sender, EventArgs e)
@@ -174,16 +246,31 @@ namespace cgLabs
 
             clearGraphics(g);
 
-            foreach (Figure figure in plane.figureList)
+            foreach (Figure figure in plane.figureList1)
             {
                 figure.scale(g, p, 2);
             }
-
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.scale(g, p, 2);
+            }
+            foreach (Figure figure in plane.figureList3)
+            {
+                figure.scale(g, p, 2);
+            }
         }
 
         private void clearGraphics(Graphics g)
         {
-            foreach (Figure figure in plane.figureList)
+            foreach (Figure figure in plane.figureList1)
+            {
+                figure.clear(g);
+            }
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.clear(g);
+            }
+            foreach (Figure figure in plane.figureList3)
             {
                 figure.clear(g);
             }
@@ -196,7 +283,15 @@ namespace cgLabs
 
             clearGraphics(g);
 
-            foreach (Figure figure in plane.figureList)
+            foreach (Figure figure in plane.figureList1)
+            {
+                figure.rotateY(g, p, 30);
+            }
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.rotateY(g, p, 30);
+            }
+            foreach (Figure figure in plane.figureList3)
             {
                 figure.rotateY(g, p, 30);
             }
@@ -209,7 +304,15 @@ namespace cgLabs
 
             clearGraphics(g);
 
-            foreach (Figure figure in plane.figureList)
+            foreach (Figure figure in plane.figureList1)
+            {
+                figure.rotateY(g, p, -30);
+            }
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.rotateY(g, p, -30);
+            }
+            foreach (Figure figure in plane.figureList3)
             {
                 figure.rotateY(g, p, -30);
             }
@@ -222,7 +325,16 @@ namespace cgLabs
 
             clearGraphics(g);
 
-            foreach (Figure figure in plane.figureList)
+            foreach (Figure figure in plane.figureList1)
+            {
+                figure.rotateZ(g, p, 30);
+            }
+
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.rotateZ(g, p, 30);
+            }
+            foreach (Figure figure in plane.figureList3)
             {
                 figure.rotateZ(g, p, 30);
             }
@@ -235,7 +347,16 @@ namespace cgLabs
 
             clearGraphics(g);
 
-            foreach (Figure figure in plane.figureList)
+            foreach (Figure figure in plane.figureList1)
+            {
+                figure.rotateZ(g, p, -30);
+            }
+
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.rotateZ(g, p, -30);
+            }
+            foreach (Figure figure in plane.figureList3)
             {
                 figure.rotateZ(g, p, -30);
             }
