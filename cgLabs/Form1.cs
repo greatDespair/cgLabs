@@ -20,226 +20,84 @@ namespace cgLabs
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Graphics g = this.CreateGraphics();
-            Pen p = new Pen(Color.Black, 1);
+            drawPlane();
+            reflectPlane();
+            scalePlane(4);
+            movePlaneX(150);
+            movePlaneY(150);
 
-            clearGraphics(g);
-
-            foreach (Figure figure in plane.figureList1)
-            {
-                figure.draw(g, p);
-            }
-            foreach (Figure figure in plane.figureList2)
-            {
-                figure.draw(g, p);
-            }
-            foreach (Figure figure in plane.figureList3)
-            {
-                figure.draw(g, p);
-            }
-            clearGraphics(g);
-            /*
-                        
-                        foreach (Figure figure in plane.figureList)
-                        {
-                            figure.moveX(g, p, 250);
-                        }
-                        Figure.ox += 250;
-                        clearGraphics(g);
-
-                        foreach (Figure figure in plane.figureList)
-                        {
-                            figure.moveY(g, p, 250);
-                        }
-                        Figure.oy += 250;
-
-                        clearGraphics(g);
-            */
-            foreach (Figure figure in plane.figureList1)
-            {
-                figure.reflect(g, p);
-            }
-            foreach (Figure figure in plane.figureList2)
-            {
-                figure.reflect(g, p);
-            }
-            foreach (Figure figure in plane.figureList3)
-            {
-                figure.reflect(g, p);
-            }
-            /*
-            clearGraphics(g);
-
-            foreach (Figure figure in plane.figureList)
-            {
-                figure.scale(g, p, 4);
-            }*/
-
-            rotateLeft.Enabled = true;
-            rotateRight.Enabled = true;
-            scaleDown.Enabled = true;
-            scaleUp.Enabled = true;
-            upButton.Enabled = true;
-            downButton.Enabled = true;
-            rightButton.Enabled = true;
-            leftButton.Enabled = true;
+            projectionButton.Enabled = true;
             button1.Enabled = false;
         }
 
         private void leftButton_Click(object sender, EventArgs e)
         {
-            Graphics g = this.CreateGraphics();
-            Pen p = new Pen(Color.Black, 1);
-
-            clearGraphics(g);
-
-            foreach (Figure figure in plane.figureList1)
-            {
-                figure.moveX(g, p, -20);
-            }
-            foreach (Figure figure in plane.figureList2)
-            {
-                figure.moveX(g, p, -20);
-            }
-            foreach (Figure figure in plane.figureList3)
-            {
-                figure.moveX(g, p, -20);
-            }
-            Figure.ox -= 20;
+            movePlaneX(-20);
         }
 
         private void rightButton_Click(object sender, EventArgs e)
         {
-            Graphics g = this.CreateGraphics();
-            Pen p = new Pen(Color.Black, 1);
-
-            clearGraphics(g);
-
-            foreach (Figure figure in plane.figureList1)
-            {
-                figure.moveX(g, p, 20);
-            }
-            foreach (Figure figure in plane.figureList2)
-            {
-                figure.moveX(g, p, 20);
-            }
-            foreach (Figure figure in plane.figureList3)
-            {
-                figure.moveX(g, p, 20);
-            }
-            Figure.ox += 20;
+            movePlaneX(20);
         }
 
         private void upButton_Click(object sender, EventArgs e)
         {
-            Graphics g = this.CreateGraphics();
-            Pen p = new Pen(Color.Black, 1);
-
-            clearGraphics(g);
-
-            foreach (Figure figure in plane.figureList1)
-            {
-                figure.moveY(g, p, -20);
-            }
-            foreach (Figure figure in plane.figureList2)
-            {
-                figure.moveY(g, p, -20);
-            }
-            foreach (Figure figure in plane.figureList3)
-            {
-                figure.moveY(g, p, -20);
-            }
-            Figure.oy -= 20;
+            movePlaneY(-20);
         }
 
 
         private void downButton_Click(object sender, EventArgs e)
         {
-            Graphics g = this.CreateGraphics();
-            Pen p = new Pen(Color.Black, 1);
-
-            clearGraphics(g);
-
-            foreach (Figure figure in plane.figureList1)
-            {
-                figure.moveY(g, p, 20);
-            }
-
-            foreach (Figure figure in plane.figureList2)
-            {
-                figure.moveY(g, p, 20);
-            }
-            foreach (Figure figure in plane.figureList3)
-            {
-                figure.moveY(g, p, 20);
-            }
-            Figure.oy += 20;
+            movePlaneY(20);
         }
 
         private void rotateLeft_Click(object sender, EventArgs e)
         {
-            Graphics g = this.CreateGraphics();
-            Pen p = new Pen(Color.Black, 1);
-
-            clearGraphics(g);
-
-            foreach (Figure figure in plane.figureList1)
-            {
-                figure.rotateX(g, p, 30);
-            }
-            foreach (Figure figure in plane.figureList2)
-            {
-                figure.rotateX(g, p, 30);
-            }
-            foreach (Figure figure in plane.figureList3)
-            {
-                figure.rotateX(g, p, 30);
-            }
+            rotatePlaneX(15);
         }
 
         private void rotateRight_Click(object sender, EventArgs e)
         {
-            Graphics g = this.CreateGraphics();
-            Pen p = new Pen(Color.Black, 1);
-
-            clearGraphics(g);
-
-            foreach (Figure figure in plane.figureList1)
-            {
-                figure.rotateX(g, p, -30);
-            }
-            foreach (Figure figure in plane.figureList2)
-            {
-                figure.rotateX(g, p, -30);
-            }
-            foreach (Figure figure in plane.figureList3)
-            {
-                figure.rotateX(g, p, -30);
-            }
+            rotatePlaneX(-15);
         }
 
         private void scaleDown_Click(object sender, EventArgs e)
         {
-            Graphics g = this.CreateGraphics();
-            Pen p = new Pen(Color.Black, 1);
-
-            clearGraphics(g);
-
-            foreach (Figure figure in plane.figureList1)
-            {
-                figure.scale(g, p, 0.5);
-            }
-            foreach (Figure figure in plane.figureList2)
-            {
-                figure.scale(g, p, 0.5);
-            }
-            foreach (Figure figure in plane.figureList3)
-            {
-                figure.scale(g, p, 0.5);
-            }
+            scalePlane(0.5);
         }
 
         private void scaleUp_Click(object sender, EventArgs e)
+        {
+            scalePlane(2);
+        }
+
+
+        private void rotateLeftY_Click(object sender, EventArgs e)
+        {
+            rotatePlaneY(15);
+        }
+
+        private void rotateRightY_Click(object sender, EventArgs e)
+        {
+            rotatePlaneY(-15);
+        }
+
+        private void rotateLeftZ_Click(object sender, EventArgs e)
+        {
+            rotatePlaneZ(15);
+        }
+
+        private void rotateRightZ_Click(object sender, EventArgs e)
+        {
+            rotatePlaneZ(-15);
+        }
+
+        private void projectionButton_Click(object sender, EventArgs e)
+        {
+            drawProjection();
+        }
+
+        private void drawPlane()
         {
             Graphics g = this.CreateGraphics();
             Pen p = new Pen(Color.Black, 1);
@@ -248,18 +106,17 @@ namespace cgLabs
 
             foreach (Figure figure in plane.figureList1)
             {
-                figure.scale(g, p, 2);
+                figure.draw(g, p);
             }
             foreach (Figure figure in plane.figureList2)
             {
-                figure.scale(g, p, 2);
+                figure.draw(g, p);
             }
             foreach (Figure figure in plane.figureList3)
             {
-                figure.scale(g, p, 2);
+                figure.draw(g, p);
             }
         }
-
         private void clearGraphics(Graphics g)
         {
             foreach (Figure figure in plane.figureList1)
@@ -275,8 +132,7 @@ namespace cgLabs
                 figure.clear(g);
             }
         }
-
-        private void rotateLeftY_Click(object sender, EventArgs e)
+        private void movePlaneX(int x)
         {
             Graphics g = this.CreateGraphics();
             Pen p = new Pen(Color.Black, 1);
@@ -285,19 +141,19 @@ namespace cgLabs
 
             foreach (Figure figure in plane.figureList1)
             {
-                figure.rotateY(g, p, 30);
+                figure.moveX(g, p, x);
             }
             foreach (Figure figure in plane.figureList2)
             {
-                figure.rotateY(g, p, 30);
+                figure.moveX(g, p, x);
             }
             foreach (Figure figure in plane.figureList3)
             {
-                figure.rotateY(g, p, 30);
+                figure.moveX(g, p, x);
             }
+            Figure.ox += x;
         }
-
-        private void rotateRightY_Click(object sender, EventArgs e)
+        private void movePlaneY(int y)
         {
             Graphics g = this.CreateGraphics();
             Pen p = new Pen(Color.Black, 1);
@@ -306,19 +162,19 @@ namespace cgLabs
 
             foreach (Figure figure in plane.figureList1)
             {
-                figure.rotateY(g, p, -30);
+                figure.moveY(g, p, y);
             }
             foreach (Figure figure in plane.figureList2)
             {
-                figure.rotateY(g, p, -30);
+                figure.moveY(g, p, y);
             }
             foreach (Figure figure in plane.figureList3)
             {
-                figure.rotateY(g, p, -30);
+                figure.moveY(g, p, y);
             }
+            Figure.oy += y;
         }
-
-        private void rotateLeftZ_Click(object sender, EventArgs e)
+        private void rotatePlaneX(int degree)
         {
             Graphics g = this.CreateGraphics();
             Pen p = new Pen(Color.Black, 1);
@@ -327,20 +183,18 @@ namespace cgLabs
 
             foreach (Figure figure in plane.figureList1)
             {
-                figure.rotateZ(g, p, 30);
+                figure.rotateX(g, p, degree);
             }
-
             foreach (Figure figure in plane.figureList2)
             {
-                figure.rotateZ(g, p, 30);
+                figure.rotateX(g, p, degree);
             }
             foreach (Figure figure in plane.figureList3)
             {
-                figure.rotateZ(g, p, 30);
+                figure.rotateX(g, p, degree);
             }
         }
-
-        private void rotateRightZ_Click(object sender, EventArgs e)
+        private void rotatePlaneY(int degree)
         {
             Graphics g = this.CreateGraphics();
             Pen p = new Pen(Color.Black, 1);
@@ -349,20 +203,58 @@ namespace cgLabs
 
             foreach (Figure figure in plane.figureList1)
             {
-                figure.rotateZ(g, p, -30);
+                figure.rotateY(g, p, degree);
             }
-
             foreach (Figure figure in plane.figureList2)
             {
-                figure.rotateZ(g, p, -30);
+                figure.rotateY(g, p, degree);
             }
             foreach (Figure figure in plane.figureList3)
             {
-                figure.rotateZ(g, p, -30);
+                figure.rotateY(g, p, degree);
             }
         }
+        private void rotatePlaneZ(int degree)
+        {
+            Graphics g = this.CreateGraphics();
+            Pen p = new Pen(Color.Black, 1);
 
-        private void projectionButton_Click(object sender, EventArgs e)
+            clearGraphics(g);
+
+            foreach (Figure figure in plane.figureList1)
+            {
+                figure.rotateZ(g, p, degree);
+            }
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.rotateZ(g, p, degree);
+            }
+            foreach (Figure figure in plane.figureList3)
+            {
+                figure.rotateZ(g, p, degree);
+            }
+        }
+        private void scalePlane(double scale)
+        {
+            Graphics g = this.CreateGraphics();
+            Pen p = new Pen(Color.Black, 1);
+
+            clearGraphics(g);
+
+            foreach (Figure figure in plane.figureList1)
+            {
+                figure.scale(g, p, scale);
+            }
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.scale(g, p, scale);
+            }
+            foreach (Figure figure in plane.figureList3)
+            {
+                figure.scale(g, p, scale);
+            }
+        }
+        private void drawProjection()
         {
             Graphics g = this.CreateGraphics();
             Pen p = new Pen(Color.Black, 1);
@@ -371,7 +263,7 @@ namespace cgLabs
 
             Plane projectionPlane = plane.getCopy();
 
-            foreach(Figure figure in projectionPlane.figureList1)
+            foreach (Figure figure in projectionPlane.figureList1)
             {
                 figure.projection(g, p, 45);
             }
@@ -379,10 +271,30 @@ namespace cgLabs
             {
                 figure.projection(g, p, 45);
             }
-            
+
             foreach (Figure figure in projectionPlane.figureList3)
             {
                 figure.projection(g, p, 45);
+            }
+        }
+        private void reflectPlane()
+        {
+            Graphics g = this.CreateGraphics();
+            Pen p = new Pen(Color.Black, 1);
+
+            clearGraphics(g);
+
+            foreach (Figure figure in plane.figureList1)
+            {
+                figure.reflect(g, p);
+            }
+            foreach (Figure figure in plane.figureList2)
+            {
+                figure.reflect(g, p);
+            }
+            foreach (Figure figure in plane.figureList3)
+            {
+                figure.reflect(g, p);
             }
         }
     }

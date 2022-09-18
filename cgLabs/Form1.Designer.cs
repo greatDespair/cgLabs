@@ -293,7 +293,7 @@
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Laba #1. Akmashev, Kosenko, Sadykov, Chapaev";
+            this.Text = "PlaneProject v0.1 -/- Akmashev, Kosenko, Sadykov, Chapaev";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
