@@ -9,7 +9,7 @@ namespace cgLabs
         Plane plane;
         public Form1()
         {
-            plane = Plane.getInstance();
+            plane = new Plane();
             InitializeComponent();
         }
 
@@ -359,6 +359,30 @@ namespace cgLabs
             foreach (Figure figure in plane.figureList3)
             {
                 figure.rotateZ(g, p, -30);
+            }
+        }
+
+        private void projectionButton_Click(object sender, EventArgs e)
+        {
+            Graphics g = this.CreateGraphics();
+            Pen p = new Pen(Color.Black, 1);
+
+            clearGraphics(g);
+
+            Plane projectionPlane = plane.getCopy();
+
+            foreach(Figure figure in projectionPlane.figureList1)
+            {
+                figure.projection(g, p, 45);
+            }
+            foreach (Figure figure in projectionPlane.figureList2)
+            {
+                figure.projection(g, p, 45);
+            }
+            
+            foreach (Figure figure in projectionPlane.figureList3)
+            {
+                figure.projection(g, p, 45);
             }
         }
     }

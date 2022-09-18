@@ -41,12 +41,13 @@
             this.scaleUp = new System.Windows.Forms.Button();
             this.scaleDown = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.rotateRightY = new System.Windows.Forms.Button();
-            this.rotateLeftY = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.rotateRightZ = new System.Windows.Forms.Button();
             this.rotateLeftZ = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.rotateRightY = new System.Windows.Forms.Button();
+            this.rotateLeftY = new System.Windows.Forms.Button();
+            this.projectionButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,9 +55,9 @@
             // 
             this.button1.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.button1.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(201, 15);
+            this.button1.Location = new System.Drawing.Point(31, 17);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(388, 59);
+            this.button1.Size = new System.Drawing.Size(299, 59);
             this.button1.TabIndex = 1;
             this.button1.Text = "Отрисовать";
             this.button1.UseVisualStyleBackColor = false;
@@ -94,7 +95,6 @@
             // 
             // rightButton
             // 
-            this.rightButton.Enabled = false;
             this.rightButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
             this.rightButton.Location = new System.Drawing.Point(837, 120);
             this.rightButton.Name = "rightButton";
@@ -106,7 +106,6 @@
             // 
             // leftButton
             // 
-            this.leftButton.Enabled = false;
             this.leftButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
             this.leftButton.Location = new System.Drawing.Point(686, 120);
             this.leftButton.Name = "leftButton";
@@ -118,7 +117,6 @@
             // 
             // upButton
             // 
-            this.upButton.Enabled = false;
             this.upButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
             this.upButton.Location = new System.Drawing.Point(765, 72);
             this.upButton.Name = "upButton";
@@ -130,7 +128,6 @@
             // 
             // downButton
             // 
-            this.downButton.Enabled = false;
             this.downButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
             this.downButton.Location = new System.Drawing.Point(765, 168);
             this.downButton.Name = "downButton";
@@ -142,7 +139,6 @@
             // 
             // rotateLeft
             // 
-            this.rotateLeft.Enabled = false;
             this.rotateLeft.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
             this.rotateLeft.Location = new System.Drawing.Point(149, 93);
             this.rotateLeft.Name = "rotateLeft";
@@ -154,7 +150,6 @@
             // 
             // rotateRight
             // 
-            this.rotateRight.Enabled = false;
             this.rotateRight.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
             this.rotateRight.Location = new System.Drawing.Point(230, 93);
             this.rotateRight.Name = "rotateRight";
@@ -166,7 +161,6 @@
             // 
             // scaleUp
             // 
-            this.scaleUp.Enabled = false;
             this.scaleUp.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
             this.scaleUp.Location = new System.Drawing.Point(640, 195);
             this.scaleUp.Name = "scaleUp";
@@ -178,7 +172,6 @@
             // 
             // scaleDown
             // 
-            this.scaleDown.Enabled = false;
             this.scaleDown.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
             this.scaleDown.Location = new System.Drawing.Point(559, 195);
             this.scaleDown.Name = "scaleDown";
@@ -191,6 +184,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Silver;
+            this.panel1.Controls.Add(this.projectionButton);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.rotateRightZ);
             this.panel1.Controls.Add(this.rotateLeftZ);
@@ -213,6 +207,38 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(935, 254);
             this.panel1.TabIndex = 22;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(26, 205);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(118, 25);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "Вращение Z";
+            // 
+            // rotateRightZ
+            // 
+            this.rotateRightZ.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
+            this.rotateRightZ.Location = new System.Drawing.Point(230, 195);
+            this.rotateRightZ.Name = "rotateRightZ";
+            this.rotateRightZ.Size = new System.Drawing.Size(75, 45);
+            this.rotateRightZ.TabIndex = 27;
+            this.rotateRightZ.Text = ">";
+            this.rotateRightZ.UseVisualStyleBackColor = true;
+            this.rotateRightZ.Click += new System.EventHandler(this.rotateRightZ_Click);
+            // 
+            // rotateLeftZ
+            // 
+            this.rotateLeftZ.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
+            this.rotateLeftZ.Location = new System.Drawing.Point(149, 195);
+            this.rotateLeftZ.Name = "rotateLeftZ";
+            this.rotateLeftZ.Size = new System.Drawing.Size(75, 45);
+            this.rotateLeftZ.TabIndex = 26;
+            this.rotateLeftZ.Text = "<";
+            this.rotateLeftZ.UseVisualStyleBackColor = true;
+            this.rotateLeftZ.Click += new System.EventHandler(this.rotateLeftZ_Click);
             // 
             // label4
             // 
@@ -246,37 +272,17 @@
             this.rotateLeftY.UseVisualStyleBackColor = true;
             this.rotateLeftY.Click += new System.EventHandler(this.rotateLeftY_Click);
             // 
-            // label5
+            // projectionButton
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(26, 205);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(118, 25);
-            this.label5.TabIndex = 25;
-            this.label5.Text = "Вращение Z";
-            // 
-            // rotateRightZ
-            // 
-            this.rotateRightZ.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
-            this.rotateRightZ.Location = new System.Drawing.Point(230, 195);
-            this.rotateRightZ.Name = "rotateRightZ";
-            this.rotateRightZ.Size = new System.Drawing.Size(75, 45);
-            this.rotateRightZ.TabIndex = 27;
-            this.rotateRightZ.Text = ">";
-            this.rotateRightZ.UseVisualStyleBackColor = true;
-            this.rotateRightZ.Click += new System.EventHandler(this.rotateRightZ_Click);
-            // 
-            // rotateLeftZ
-            // 
-            this.rotateLeftZ.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
-            this.rotateLeftZ.Location = new System.Drawing.Point(149, 195);
-            this.rotateLeftZ.Name = "rotateLeftZ";
-            this.rotateLeftZ.Size = new System.Drawing.Size(75, 45);
-            this.rotateLeftZ.TabIndex = 26;
-            this.rotateLeftZ.Text = "<";
-            this.rotateLeftZ.UseVisualStyleBackColor = true;
-            this.rotateLeftZ.Click += new System.EventHandler(this.rotateLeftZ_Click);
+            this.projectionButton.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.projectionButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.projectionButton.Location = new System.Drawing.Point(336, 17);
+            this.projectionButton.Name = "projectionButton";
+            this.projectionButton.Size = new System.Drawing.Size(298, 59);
+            this.projectionButton.TabIndex = 28;
+            this.projectionButton.Text = "Проекция";
+            this.projectionButton.UseVisualStyleBackColor = false;
+            this.projectionButton.Click += new System.EventHandler(this.projectionButton_Click);
             // 
             // Form1
             // 
@@ -315,6 +321,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button rotateRightY;
         private System.Windows.Forms.Button rotateLeftY;
+        private System.Windows.Forms.Button projectionButton;
     }
 }
 

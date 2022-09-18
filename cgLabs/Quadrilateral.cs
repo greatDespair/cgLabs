@@ -11,7 +11,7 @@ using cgLabs.MatrixLib;
 namespace cgLabs
 {
 
-    public class Quadrilateral : Figure
+    public class Quadrilateral : Figure, ICloneable
     {
 
         public Quadrilateral(double x1, double y1, double z1, double x2, double y2, double z2,  double x3, double y3, double z3, double x4, double y4, double z4)
@@ -99,6 +99,24 @@ namespace cgLabs
             Array.Copy(lib.reflectMatrix(MatrixP, ox, oy, oz), MatrixP, 4);
 
             this.draw(g, p);
+        }
+
+        public override void projection(Graphics g, Pen p, int degree)
+        {
+            Matrix lib = new Matrix();
+
+            Array.Copy(lib.projectionMatrix(MatrixP, degree), MatrixP, 4);
+
+            this.draw(g, p);
+        }
+
+        public override object Clone()
+        {
+            Quadrilateral result = new Quadrilateral(this.MatrixP[0][0], this.MatrixP[0][1], this.MatrixP[0][2],
+                                                     this.MatrixP[1][0], this.MatrixP[1][1], this.MatrixP[1][2],
+                                                     this.MatrixP[2][0], this.MatrixP[2][1], this.MatrixP[2][2],
+                                                     this.MatrixP[3][0], this.MatrixP[3][1], this.MatrixP[3][2]);
+            return result;
         }
     }
 }

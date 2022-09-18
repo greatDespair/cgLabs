@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,11 +10,16 @@ namespace cgLabs
 {
     public class Plane
     {
-        private static Plane instance;
         public List<Figure> figureList1;
         public List<Figure> figureList2;
         public List<Figure> figureList3;
-        private Plane()
+        public Plane(bool flag)
+        {
+            this.figureList1 = new List<Figure>();
+            this.figureList2 = new List<Figure>();
+            this.figureList3 = new List<Figure>();
+        }
+        public Plane()
         {
             Quadrilateral qNose = new Quadrilateral(18, 26, 0, 19, 28,0, 20, 28,0, 21, 26, 0);
             Quadrilateral qBody = new Quadrilateral(18, 26, 0, 21, 26, 0, 21, 4, 0, 18, 4, 0);
@@ -31,11 +38,11 @@ namespace cgLabs
             Quadrilateral qTailLeft = new Quadrilateral(14, 2, 0, 18, 4, 0, 19, 1, 0, 14, 1, 0);
             Quadrilateral qTailRight = new Quadrilateral(21, 4, 0, 25, 2, 0, 25, 1, 0, 20, 1, 0);
 
-            Triangle tEngTopLeft = new Triangle(16, 20, 18, 21, 18, 20, 0);
-            Triangle tEngTopRight = new Triangle(21, 21, 23, 20, 21, 20, 0);
+            Triangle tEngTopLeft = new Triangle(16, 20,0, 18, 21, 0, 18, 20, 0);
+            Triangle tEngTopRight = new Triangle(21, 21, 0, 23, 20, 0, 21, 20, 0);
 
-            Triangle tTailLeft = new Triangle(14, 1, 19, 1, 19, 0, 0);
-            Triangle tTailRight = new Triangle(20, 1, 25, 1, 20, 0, 0);
+            Triangle tTailLeft = new Triangle(14, 1, 0, 19, 1, 0, 19, 0, 0);
+            Triangle tTailRight = new Triangle(20, 1, 0, 25, 1, 0, 20, 0, 0);
 
             Quadrilateral qNoseD = new Quadrilateral(18, 26, 2, 19, 28, 2, 20, 28, 2, 21, 26, 2);
             Quadrilateral qBodyD = new Quadrilateral(18, 26, 2, 21, 26, 2, 21, 4, 2, 18, 4, 2);
@@ -54,11 +61,11 @@ namespace cgLabs
             Quadrilateral qTailLeftD = new Quadrilateral(14, 2, 2, 18, 4, 2, 19, 1, 2, 14, 1, 2);
             Quadrilateral qTailRightD = new Quadrilateral(21, 4, 2, 25, 2, 2, 25, 1, 2, 20, 1, 2);
 
-            Triangle tEngTopLeftD = new Triangle(16, 20, 18, 21, 18, 20, 2);
-            Triangle tEngTopRightD = new Triangle(21, 21, 23, 20, 21, 20, 2);
+            Triangle tEngTopLeftD = new Triangle(16, 20,2, 18, 21, 2, 18, 20, 2);
+            Triangle tEngTopRightD = new Triangle(21, 21, 2, 23, 20, 2, 21, 20, 2);
 
-            Triangle tTailLeftD = new Triangle(14, 1, 19, 1, 19, 0, 2);
-            Triangle tTailRightD = new Triangle(20, 1, 25, 1, 20, 0, 2);
+            Triangle tTailLeftD = new Triangle(14, 1, 2, 19, 1, 2, 19, 0, 2);
+            Triangle tTailRightD = new Triangle(20, 1, 2, 25, 1, 2, 20, 0, 2);
 
             figureList1 = new List<Figure> {
                             qNose, qBody, qTailSquare, qEngBodyRight, qEngBodyLeft,
@@ -109,14 +116,30 @@ namespace cgLabs
                 qRightEngineWingTriangle, qRightEngineTop, qRightCenterBottom, qRightEleroneTop,
                 qRightEleroneRight, qCenterBottom, qLeftEleroneBottom, qLeftEleroneLeft, qLeftEleroneTop,
                 qLeftCenterBottom, qLeftEngineTop, qLeftEngineWingTriangle, qLeftEngineWingBottom,
-                qLeftWingBottom, qLeftWingLeft, qLeftWingTop, qLeftEngineWingTop, qLeftEngine, qLeftCenter
+                qLeftWingBottom, qLeftWingLeft, qLeftWingTop, qLeftEngineWingTop, qLeftEngine, qLeftCenter,
+                qRightEleroneBottom
             };
         }
-        public static Plane getInstance()
+
+        public Plane getCopy()
         {
-            if(instance == null)
-                instance = new Plane();
-            return instance;    
+            Plane result = new Plane(true);
+
+            foreach(Figure figure in this.figureList1)
+            {
+                result.figureList1.Add((Figure)figure.Clone());
+            }
+
+            foreach (Figure figure in this.figureList2)
+            {
+                result.figureList2.Add((Figure)figure.Clone());
+            }
+
+            foreach (Figure figure in this.figureList3)
+            {
+                result.figureList3.Add((Figure)figure.Clone());
+            }
+            return result;
         }
     }
 }

@@ -62,5 +62,11 @@ namespace cgLabs
 
         }
 
+        public virtual void projection(Graphics g, Pen p, int degree)
+        {
+
+        }
+
+        public abstract object Clone();
     }
 }

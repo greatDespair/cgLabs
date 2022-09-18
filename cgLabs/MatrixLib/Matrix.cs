@@ -12,7 +12,17 @@ namespace cgLabs.MatrixLib
         private double[][] moveM;
         private double[][] scaleM;
         private double[][] mirrorM;
+        private double[][] projectionM;
 
+        public void initializeProjection(int degree)
+        {
+            double angle = (double)degree * Math.PI / 180;
+            projectionM = new double[4][];
+            projectionM[0] = new double[4] {1, 0,0,0 }; 
+            projectionM[1] = new double[4] { 0, 1, 0, 0 };
+            projectionM[2] = new double[4] { -Math.Cos(angle), -Math.Sin(angle), 0, 0 };
+            projectionM[3] = new double[4] { 0, 0, 0, 1 };
+        }
         public void initializeReflect()
         {
             mirrorM = new double[4][];
@@ -66,7 +76,30 @@ namespace cgLabs.MatrixLib
             moveM[2] = new double[4] { 0, 0, 1, 0 };
             moveM[3] = new double[4] { valueX, valueY, valueZ, 1 };
         }
+        public double[][] projectionMatrix(double[][] m, int degree)
+        {
+            double[][] resMatrix = new double[m.Length][];
 
+            for (int i = 0; i < m.Length; i++)
+            {
+                resMatrix[i] = new double[4];
+            }
+
+            initializeProjection(degree);
+
+            for (int i = 0; i < m.Length; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    for (int k = 0; k < 4; k++)
+                    {
+                        resMatrix[i][j] += m[i][k] * projectionM[k][j];
+                    }
+                }
+            }
+
+            return resMatrix;
+        }
         public double[][] reflectMatrix(double[][] m, double ox, double oy, double oz)
         {
             double[][] resMatrix = new double[m.Length][];
