@@ -27,7 +27,16 @@ namespace cgLabs
         {
             return (MatrixP[0][2] + MatrixP[1][2] + MatrixP[2][2] + MatrixP[3][2])/4;
         }
-        public static bool IsInPolygon(PointF[] polygon, PointF testPoint)
+        public override double IsInPolygon(double x, double y)
+        {
+            double xA = MatrixP[0][0] + (MatrixP[1][0] - MatrixP[0][0]) * (y - MatrixP[0][1]) / (MatrixP[1][1] - MatrixP[0][1]);
+            double xB = MatrixP[0][0] + (MatrixP[2][0] - MatrixP[0][0]) * (y - MatrixP[0][1]) / (MatrixP[2][1] - MatrixP[0][1]);
+            double zA = MatrixP[1][2] + (MatrixP[1][2] - MatrixP[0][2]) * (y - MatrixP[0][1]) / (MatrixP[1][1] - MatrixP[0][1]);
+            double zB = MatrixP[1][2] + (MatrixP[2][2] - MatrixP[0][2]) * (y - MatrixP[0][1]) / (MatrixP[2][1] - MatrixP[0][1]);
+            double Z = zA + (zB - zA) * (x - xA) / (xB - xA);
+            return Z;
+        }
+        public static bool IsInPolygonForm(PointF[] polygon, PointF testPoint)
         {
             bool result = false;
             int j = polygon.Count() - 1;
@@ -77,7 +86,7 @@ namespace cgLabs
                                               new PointF {X = (float)MatrixP[2][0], Y = (float)MatrixP[2][1] },
                                               new PointF {X = (float)MatrixP[3][0], Y = (float)MatrixP[3][1] }};
             PointF testPoint = new PointF { X = (float)x, Y = (float)y };
-            inPolygon = IsInPolygon(polygon, testPoint);
+            inPolygon = IsInPolygonForm(polygon, testPoint);
             return inPolygon;
         }
         public override void draw(Graphics g, Pen p)

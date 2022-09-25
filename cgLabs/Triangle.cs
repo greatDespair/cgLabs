@@ -27,22 +27,14 @@ namespace cgLabs
             return (MatrixP[0][2] + MatrixP[1][2] + MatrixP[2][2])/3;
         }
 
-        private static bool IsInPolygon(PointF[] polygon, PointF testPoint)
+        public override double IsInPolygon(double x, double y)
         {
-            bool result = false;
-            int j = polygon.Count() - 1;
-            for (int i = 0; i < polygon.Count(); i++)
-            {
-                if (polygon[i].Y < testPoint.Y && polygon[j].Y >= testPoint.Y || polygon[j].Y < testPoint.Y && polygon[i].Y >= testPoint.Y)
-                {
-                    if (polygon[i].X + (testPoint.Y - polygon[i].Y) / (polygon[j].Y - polygon[i].Y) * (polygon[j].X - polygon[i].X) < testPoint.X)
-                    {
-                        result = !result;
-                    }
-                }
-                j = i;
-            }
-            return result;
+            double xA = MatrixP[0][0] + (MatrixP[1][0] - MatrixP[0][0]) * (y - MatrixP[0][1]) / (MatrixP[1][1] - MatrixP[0][1]);
+            double xB = MatrixP[0][0] + (MatrixP[2][0] - MatrixP[0][0]) * (y - MatrixP[0][1]) / (MatrixP[2][1] - MatrixP[0][1]);
+            double zA = MatrixP[1][2] + (MatrixP[1][2] - MatrixP[0][2]) * (y - MatrixP[0][1]) / (MatrixP[1][1] - MatrixP[0][1]);
+            double zB = MatrixP[1][2] + (MatrixP[2][2] - MatrixP[0][2]) * (y - MatrixP[0][1]) / (MatrixP[2][1] - MatrixP[0][1]);
+            double Z = zA + (zB - zA) * (x - xA) / (xB - xA);
+            return Z;
         }
         private bool IsInPolygonBorder(double x, double y)
         {
@@ -62,6 +54,24 @@ namespace cgLabs
             return false;
         }
 
+        public static bool IsInPolygonForm(PointF[] polygon, PointF testPoint)
+        {
+            bool result = false;
+            int j = polygon.Count() - 1;
+            for (int i = 0; i < polygon.Count(); i++)
+            {
+                if (polygon[i].Y < testPoint.Y && polygon[j].Y >= testPoint.Y || polygon[j].Y < testPoint.Y && polygon[i].Y >= testPoint.Y)
+                {
+                    if (polygon[i].X + (testPoint.Y - polygon[i].Y) / (polygon[j].Y - polygon[i].Y) * (polygon[j].X - polygon[i].X) < testPoint.X)
+                    {
+                        result = !result;
+                    }
+                }
+                j = i;
+            }
+            return result;
+        }
+
         public override bool ItBelongsPolygon(double x, double y)
         {
             bool inPolygon;
@@ -69,7 +79,7 @@ namespace cgLabs
                                               new PointF {X = (float)MatrixP[1][0], Y = (float)MatrixP[1][1] },
                                               new PointF {X = (float)MatrixP[2][0], Y = (float)MatrixP[2][1] }};
             PointF testPoint = new PointF { X = (float)x, Y = (float)y };
-            inPolygon = IsInPolygon(polygon, testPoint);
+            inPolygon = IsInPolygonForm(polygon, testPoint);
             return inPolygon;
         }
         public override bool ItBelongsBorder(double x, double y)

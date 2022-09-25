@@ -17,7 +17,7 @@ namespace cgLabs
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ScreenMatrix = new double[935, 615];
+            ScreenMatrix = new double[615, 935];
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
@@ -232,10 +232,25 @@ namespace cgLabs
         //935,615
         private void TestButton_Click(object sender, EventArgs e)
         {
-            for (double x = 0; x < ScreenMatrix.GetLength(0); x++)
+            for (int x = 0; x < ScreenMatrix.GetLength(0); x++)
             {
+                for (int y = 0; y < ScreenMatrix.GetLength(1); y++)
+                {
+                    foreach (Figure figure in plane.figureList)
+                    {
+                        if (figure.ItBelongsPolygon(x, y))
+                        {
+                            double result = figure.IsInPolygon(x, y);
+                            if (result > 0)
+                            {
+                                ScreenMatrix[x, y] = (int)result;
+                            }
+                        }
+                    }
 
+                }
             }
+            BigDraw();
         }
 
         public void BigDraw()
@@ -251,8 +266,8 @@ namespace cgLabs
                 {
                     if (ScreenMatrix[i, j] != 0)
                     {
-                        Pen p = new Pen(Color.DarkOrange, 1);
-                        g.DrawLine(p, i, j, i + 1, j + 1);
+                        Pen p = new Pen(Color.Black, 1);
+                        g.DrawEllipse(p, new RectangleF(i, j, 1, 1));
                     }
                 }
             }

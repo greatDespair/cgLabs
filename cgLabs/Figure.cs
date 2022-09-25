@@ -66,6 +66,7 @@ namespace cgLabs
         {
 
         }
+        public abstract double IsInPolygon(double x, double y);
         public abstract double GetZ();
         public abstract bool ItBelongsBorder(double x, double y);
         public abstract bool ItBelongsPolygon(double x, double y);
