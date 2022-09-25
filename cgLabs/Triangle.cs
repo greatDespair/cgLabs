@@ -22,6 +22,62 @@ namespace cgLabs
             MatrixP[2] = new double[4] { x3, y3, z3, 1 };
         }
 
+        public override double GetZ()
+        {
+            return (MatrixP[0][2] + MatrixP[1][2] + MatrixP[2][2])/3;
+        }
+
+        private static bool IsInPolygon(PointF[] polygon, PointF testPoint)
+        {
+            bool result = false;
+            int j = polygon.Count() - 1;
+            for (int i = 0; i < polygon.Count(); i++)
+            {
+                if (polygon[i].Y < testPoint.Y && polygon[j].Y >= testPoint.Y || polygon[j].Y < testPoint.Y && polygon[i].Y >= testPoint.Y)
+                {
+                    if (polygon[i].X + (testPoint.Y - polygon[i].Y) / (polygon[j].Y - polygon[i].Y) * (polygon[j].X - polygon[i].X) < testPoint.X)
+                    {
+                        result = !result;
+                    }
+                }
+                j = i;
+            }
+            return result;
+        }
+        private bool IsInPolygonBorder(double x, double y)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                if ((x - MatrixP[i][0]) / (MatrixP[i + 1][0] - MatrixP[i][0]) ==
+                    (y - MatrixP[i][1]) / (MatrixP[i + 1][1] - MatrixP[i][1]))
+                {
+                    return true;
+                }
+            }
+            if ((x - MatrixP[2][0]) / (MatrixP[0][0] - MatrixP[2][0]) ==
+                    (y - MatrixP[2][1]) / (MatrixP[0][1] - MatrixP[2][1]))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public override bool ItBelongsPolygon(double x, double y)
+        {
+            bool inPolygon;
+            PointF[] polygon = new PointF[] { new PointF {X = (float)MatrixP[0][0], Y = (float)MatrixP[0][1] },
+                                              new PointF {X = (float)MatrixP[1][0], Y = (float)MatrixP[1][1] },
+                                              new PointF {X = (float)MatrixP[2][0], Y = (float)MatrixP[2][1] }};
+            PointF testPoint = new PointF { X = (float)x, Y = (float)y };
+            inPolygon = IsInPolygon(polygon, testPoint);
+            return inPolygon;
+        }
+        public override bool ItBelongsBorder(double x, double y)
+        {
+            bool inPolygon;
+            inPolygon = IsInPolygonBorder(x, y);
+            return inPolygon;
+        }
         public override void draw(Graphics g, Pen p)
         {
             PointF[] points = new PointF[]

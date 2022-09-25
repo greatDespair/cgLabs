@@ -41,13 +41,14 @@
             this.scaleUp = new System.Windows.Forms.Button();
             this.scaleDown = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.projectionButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.rotateRightZ = new System.Windows.Forms.Button();
             this.rotateLeftZ = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.rotateRightY = new System.Windows.Forms.Button();
             this.rotateLeftY = new System.Windows.Forms.Button();
-            this.projectionButton = new System.Windows.Forms.Button();
+            this.TestButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -184,6 +185,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Silver;
+            this.panel1.Controls.Add(this.TestButton);
             this.panel1.Controls.Add(this.projectionButton);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.rotateRightZ);
@@ -207,6 +209,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(935, 254);
             this.panel1.TabIndex = 22;
+            // 
+            // projectionButton
+            // 
+            this.projectionButton.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.projectionButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.projectionButton.Location = new System.Drawing.Point(336, 17);
+            this.projectionButton.Name = "projectionButton";
+            this.projectionButton.Size = new System.Drawing.Size(298, 59);
+            this.projectionButton.TabIndex = 28;
+            this.projectionButton.Text = "Проекция";
+            this.projectionButton.UseVisualStyleBackColor = false;
+            this.projectionButton.Click += new System.EventHandler(this.projectionButton_Click);
             // 
             // label5
             // 
@@ -272,17 +286,17 @@
             this.rotateLeftY.UseVisualStyleBackColor = true;
             this.rotateLeftY.Click += new System.EventHandler(this.rotateLeftY_Click);
             // 
-            // projectionButton
+            // TestButton
             // 
-            this.projectionButton.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.projectionButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.projectionButton.Location = new System.Drawing.Point(336, 17);
-            this.projectionButton.Name = "projectionButton";
-            this.projectionButton.Size = new System.Drawing.Size(298, 59);
-            this.projectionButton.TabIndex = 28;
-            this.projectionButton.Text = "Проекция";
-            this.projectionButton.UseVisualStyleBackColor = false;
-            this.projectionButton.Click += new System.EventHandler(this.projectionButton_Click);
+            this.TestButton.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.TestButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TestButton.Location = new System.Drawing.Point(640, 17);
+            this.TestButton.Name = "TestButton";
+            this.TestButton.Size = new System.Drawing.Size(162, 49);
+            this.TestButton.TabIndex = 29;
+            this.TestButton.Text = "Test";
+            this.TestButton.UseVisualStyleBackColor = false;
+            this.TestButton.Click += new System.EventHandler(this.TestButton_Click);
             // 
             // Form1
             // 
@@ -322,6 +336,7 @@
         private System.Windows.Forms.Button rotateRightY;
         private System.Windows.Forms.Button rotateLeftY;
         private System.Windows.Forms.Button projectionButton;
+        private System.Windows.Forms.Button TestButton;
     }
 }
 
