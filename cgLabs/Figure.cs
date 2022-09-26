@@ -20,6 +20,10 @@ namespace cgLabs
             oy = 14;
             oz = 1;
         }
+        public virtual void fill(Graphics g, Brush b)
+        {
+
+        }
         public virtual void draw(Graphics g, Pen p)
         {
 

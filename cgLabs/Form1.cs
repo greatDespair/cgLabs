@@ -232,7 +232,21 @@ namespace cgLabs
         //935,615
         private void TestButton_Click(object sender, EventArgs e)
         {
-            for (int x = 0; x < ScreenMatrix.GetLength(0); x++)
+            Graphics g = this.CreateGraphics();
+            SolidBrush brush = new SolidBrush(Color.Gray);
+            int i = 1;
+            
+            foreach (Figure figure in plane.figureList)
+            { 
+                if((i > 16)&&(i < 47))
+                    brush.Color = Color.DarkGray;
+                if (i > 46)
+                    brush.Color = Color.LightSlateGray;
+                figure.fill(g, brush);
+                i++;
+            }
+
+           /* for (int x = 0; x < ScreenMatrix.GetLength(0); x++)
             {
                 for (int y = 0; y < ScreenMatrix.GetLength(1); y++)
                 {
@@ -250,7 +264,7 @@ namespace cgLabs
 
                 }
             }
-            BigDraw();
+            BigDraw();*/
         }
 
         public void BigDraw()

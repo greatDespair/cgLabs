@@ -88,6 +88,16 @@ namespace cgLabs
             inPolygon = IsInPolygonBorder(x, y);
             return inPolygon;
         }
+        public override void fill(Graphics g, Brush b)
+        {
+            PointF[] points = new PointF[]
+            {
+                new Point((int)MatrixP[0][0],(int)MatrixP[0][1]),
+                new Point((int)MatrixP[1][0],(int)MatrixP[1][1]),
+                new Point((int)MatrixP[2][0],(int)MatrixP[2][1])
+            };
+            g.FillPolygon(b, points);
+        }
         public override void draw(Graphics g, Pen p)
         {
             PointF[] points = new PointF[]

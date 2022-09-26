@@ -100,15 +100,19 @@ namespace cgLabs
             {
                 qNose, qBody, qTailSquare, qEngBodyRight, qEngBodyLeft,
                 qWingLeft, qWingRight, qTailThing, qTailLeft, qTailRight, tEngTopLeft, tEngTopRight,
-                tTailLeft, tTailRight, qEngSlopLeft, qEngSlopRight, qNoseD, qBodyD, qTailSquareD, qEngBodyRightD, qEngBodyLeftD,
-                qWingLeftD, qWingRightD, qTailThingD, qTailLeftD, qTailRightD, tEngTopLeftD, tEngTopRightD,
-                tTailLeftD, tTailRightD, qEngSlopLeftD, qEngSlopRightD, qLeftNose, qTopNose, qRightNose, qRightCenter, qRightEngine, qRightEngineWingTop,
+                tTailLeft, tTailRight, qEngSlopLeft, qEngSlopRight, 
+                
+                qLeftNose, qTopNose, qRightNose, qRightCenter, qRightEngine, qRightEngineWingTop,
                 qRightWingTop, qRightWingRight, qRightWingBottom, qRightEngineWingBottom,
                 qRightEngineWingTriangle, qRightEngineTop, qRightCenterBottom, qRightEleroneTop,
                 qRightEleroneRight, qCenterBottom, qLeftEleroneBottom, qLeftEleroneLeft, qLeftEleroneTop,
                 qLeftCenterBottom, qLeftEngineTop, qLeftEngineWingTriangle, qLeftEngineWingBottom,
                 qLeftWingBottom, qLeftWingLeft, qLeftWingTop, qLeftEngineWingTop, qLeftEngine, qLeftCenter,
-                qRightEleroneBottom
+                qRightEleroneBottom,
+                
+                qNoseD, qBodyD, qTailSquareD, qEngBodyRightD, qEngBodyLeftD,
+                qWingLeftD, qWingRightD, qTailThingD, qTailLeftD, qTailRightD, tEngTopLeftD, tEngTopRightD,
+                tTailLeftD, tTailRightD, qEngSlopLeftD, qEngSlopRightD
             };
         }
 
