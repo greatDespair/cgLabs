@@ -154,7 +154,7 @@ namespace cgLabs
             Pen p = new Pen(Color.Black, 1);
 
             clearGraphics(g);
-
+            plane.XRotate += degree;
             foreach (Figure figure in plane.figureList)
             {
                 figure.rotateX(g, p, degree);
@@ -167,6 +167,7 @@ namespace cgLabs
             Pen p = new Pen(Color.Black, 1);
 
             clearGraphics(g);
+            plane.YRotate += degree;
 
             foreach (Figure figure in plane.figureList)
             {
@@ -235,36 +236,37 @@ namespace cgLabs
             Graphics g = this.CreateGraphics();
             SolidBrush brush = new SolidBrush(Color.Gray);
             int i = 1;
-            
-            foreach (Figure figure in plane.figureList)
-            { 
-                if((i > 16)&&(i < 47))
-                    brush.Color = Color.DarkGray;
-                if (i > 46)
-                    brush.Color = Color.LightSlateGray;
-                figure.fill(g, brush);
-                i++;
-            }
-
-           /* for (int x = 0; x < ScreenMatrix.GetLength(0); x++)
-            {
-                for (int y = 0; y < ScreenMatrix.GetLength(1); y++)
+            if (((plane.XRotate > - 90)&&(plane.XRotate < 90))&&
+                ((plane.YRotate > -90) && (plane.YRotate < 90)))
+            {      
+                foreach (Figure figure in plane.figureList)
                 {
-                    foreach (Figure figure in plane.figureList)
-                    {
-                        if (figure.ItBelongsPolygon(x, y))
-                        {
-                            double result = figure.IsInPolygon(x, y);
-                            if (result > 0)
-                            {
-                                ScreenMatrix[x, y] = (int)result;
-                            }
-                        }
-                    }
+
+                    if ((i > 16) && (i < 47))
+                        brush.Color = Color.DarkGray;
+                    if (i > 46)
+                        brush.Color = Color.LightSlateGray;
+                    figure.fill(g, brush);
+                    i++;
 
                 }
             }
-            BigDraw();*/
+            else
+            {
+                Plane reversePlane = plane.getCopy();
+                reversePlane.figureList.Reverse();
+                foreach (Figure figure in reversePlane.figureList)
+                {
+
+                    if ((i > 16) && (i < 47))
+                        brush.Color = Color.DarkGray;
+                    if (i > 46)
+                        brush.Color = Color.LightSlateGray;
+                    figure.fill(g, brush);
+                    i++;
+
+                }
+            }
         }
 
         public void BigDraw()

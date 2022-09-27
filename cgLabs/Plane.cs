@@ -10,6 +10,8 @@ namespace cgLabs
 {
     public class Plane
     {
+        public double XRotate { get; set; }
+        public double YRotate { get; set; }
         public List<Figure> figureList;
         public Plane(bool flag)
         {
@@ -114,6 +116,8 @@ namespace cgLabs
                 qWingLeftD, qWingRightD, qTailThingD, qTailLeftD, qTailRightD, tEngTopLeftD, tEngTopRightD,
                 tTailLeftD, tTailRightD, qEngSlopLeftD, qEngSlopRightD
             };
+            XRotate = 0;
+            YRotate = 0;
         }
 
         public Plane getCopy()

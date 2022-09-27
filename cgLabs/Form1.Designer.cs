@@ -41,6 +41,7 @@
             this.scaleUp = new System.Windows.Forms.Button();
             this.scaleDown = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.TestButton = new System.Windows.Forms.Button();
             this.projectionButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.rotateRightZ = new System.Windows.Forms.Button();
@@ -48,7 +49,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.rotateRightY = new System.Windows.Forms.Button();
             this.rotateLeftY = new System.Windows.Forms.Button();
-            this.TestButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,7 +88,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(533, 140);
+            this.label3.Location = new System.Drawing.Point(531, 147);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(138, 25);
             this.label3.TabIndex = 8;
@@ -97,7 +97,7 @@
             // rightButton
             // 
             this.rightButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
-            this.rightButton.Location = new System.Drawing.Point(837, 120);
+            this.rightButton.Location = new System.Drawing.Point(838, 137);
             this.rightButton.Name = "rightButton";
             this.rightButton.Size = new System.Drawing.Size(75, 45);
             this.rightButton.TabIndex = 14;
@@ -108,7 +108,7 @@
             // leftButton
             // 
             this.leftButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
-            this.leftButton.Location = new System.Drawing.Point(686, 120);
+            this.leftButton.Location = new System.Drawing.Point(687, 137);
             this.leftButton.Name = "leftButton";
             this.leftButton.Size = new System.Drawing.Size(75, 45);
             this.leftButton.TabIndex = 15;
@@ -119,7 +119,7 @@
             // upButton
             // 
             this.upButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
-            this.upButton.Location = new System.Drawing.Point(765, 72);
+            this.upButton.Location = new System.Drawing.Point(766, 89);
             this.upButton.Name = "upButton";
             this.upButton.Size = new System.Drawing.Size(68, 45);
             this.upButton.TabIndex = 16;
@@ -130,7 +130,7 @@
             // downButton
             // 
             this.downButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F);
-            this.downButton.Location = new System.Drawing.Point(765, 168);
+            this.downButton.Location = new System.Drawing.Point(766, 185);
             this.downButton.Name = "downButton";
             this.downButton.Size = new System.Drawing.Size(68, 45);
             this.downButton.TabIndex = 17;
@@ -210,6 +210,18 @@
             this.panel1.Size = new System.Drawing.Size(935, 254);
             this.panel1.TabIndex = 22;
             // 
+            // TestButton
+            // 
+            this.TestButton.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.TestButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TestButton.Location = new System.Drawing.Point(640, 17);
+            this.TestButton.Name = "TestButton";
+            this.TestButton.Size = new System.Drawing.Size(279, 59);
+            this.TestButton.TabIndex = 29;
+            this.TestButton.Text = "Закрасить";
+            this.TestButton.UseVisualStyleBackColor = false;
+            this.TestButton.Click += new System.EventHandler(this.TestButton_Click);
+            // 
             // projectionButton
             // 
             this.projectionButton.BackColor = System.Drawing.SystemColors.ScrollBar;
@@ -285,18 +297,6 @@
             this.rotateLeftY.Text = "<";
             this.rotateLeftY.UseVisualStyleBackColor = true;
             this.rotateLeftY.Click += new System.EventHandler(this.rotateLeftY_Click);
-            // 
-            // TestButton
-            // 
-            this.TestButton.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.TestButton.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TestButton.Location = new System.Drawing.Point(640, 17);
-            this.TestButton.Name = "TestButton";
-            this.TestButton.Size = new System.Drawing.Size(162, 49);
-            this.TestButton.TabIndex = 29;
-            this.TestButton.Text = "Test";
-            this.TestButton.UseVisualStyleBackColor = false;
-            this.TestButton.Click += new System.EventHandler(this.TestButton_Click);
             // 
             // Form1
             // 
