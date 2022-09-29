@@ -239,13 +239,13 @@ namespace cgLabs
             if (((plane.XRotate > - 90)&&(plane.XRotate < 90))&&
                 ((plane.YRotate > -90) && (plane.YRotate < 90)))
             {      
+                    int intColor = (int)Math.Abs(plane.XRotate % 90);
                 foreach (Figure figure in plane.figureList)
                 {
-
                     if ((i > 16) && (i < 47))
                         brush.Color = Color.DarkGray;
                     if (i > 46)
-                        brush.Color = Color.LightSlateGray;
+                        brush.Color = Color.FromArgb(255, 63, 82, 46 + intColor);
                     figure.fill(g, brush);
                     i++;
 
@@ -255,13 +255,13 @@ namespace cgLabs
             {
                 Plane reversePlane = plane.getCopy();
                 reversePlane.figureList.Reverse();
+                int intColor =(int)Math.Abs(plane.XRotate % 90);
                 foreach (Figure figure in reversePlane.figureList)
                 {
-
                     if ((i > 16) && (i < 47))
                         brush.Color = Color.DarkGray;
                     if (i > 46)
-                        brush.Color = Color.LightSlateGray;
+                        brush.Color = Color.FromArgb(255, 63, 82, 46 + 90 - intColor);
                     figure.fill(g, brush);
                     i++;
 
