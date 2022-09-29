@@ -28,7 +28,7 @@ namespace cgLabs
             scalePlane(4);
             movePlaneX(150);
             movePlaneY(150);
-
+            fillPlane();
             projectionButton.Enabled = true;
             button1.Enabled = false;
         }
@@ -36,63 +36,75 @@ namespace cgLabs
         private void leftButton_Click(object sender, EventArgs e)
         {
             movePlaneX(-20);
+            fillPlane();
         }
 
         private void rightButton_Click(object sender, EventArgs e)
         {
             movePlaneX(20);
+            fillPlane();
         }
 
         private void upButton_Click(object sender, EventArgs e)
         {
             movePlaneY(-20);
+            fillPlane();
         }
 
 
         private void downButton_Click(object sender, EventArgs e)
         {
             movePlaneY(20);
+            fillPlane();
         }
 
         private void rotateLeft_Click(object sender, EventArgs e)
         {
             rotatePlaneX(15);
+            fillPlane();
         }
 
         private void rotateRight_Click(object sender, EventArgs e)
         {
             rotatePlaneX(-15);
+            fillPlane();
         }
 
         private void scaleDown_Click(object sender, EventArgs e)
         {
             scalePlane(0.5);
+            fillPlane();
         }
 
         private void scaleUp_Click(object sender, EventArgs e)
         {
             scalePlane(2);
+            fillPlane();
         }
 
 
         private void rotateLeftY_Click(object sender, EventArgs e)
         {
             rotatePlaneY(15);
+            fillPlane();
         }
 
         private void rotateRightY_Click(object sender, EventArgs e)
         {
             rotatePlaneY(-15);
+            fillPlane();
         }
 
         private void rotateLeftZ_Click(object sender, EventArgs e)
         {
             rotatePlaneZ(15);
+            fillPlane();
         }
 
         private void rotateRightZ_Click(object sender, EventArgs e)
         {
             rotatePlaneZ(-15);
+            fillPlane();
         }
 
         private void projectionButton_Click(object sender, EventArgs e)
@@ -233,13 +245,18 @@ namespace cgLabs
         //935,615
         private void TestButton_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        public void fillPlane()
+        {
             Graphics g = this.CreateGraphics();
             SolidBrush brush = new SolidBrush(Color.Gray);
             int i = 1;
-            if (((plane.XRotate > - 90)&&(plane.XRotate < 90))&&
-                ((plane.YRotate > -90) && (plane.YRotate < 90)))
-            {      
-                    int intColor = (int)Math.Abs(plane.XRotate % 90);
+            if (((plane.XRotate > 0) && (plane.XRotate < 180)) &&
+                ((plane.YRotate > 0) && (plane.YRotate < 180)))
+            {
+                int intColor = (int)Math.Abs(90 - Math.Abs(Math.Min(plane.XRotate % 180, plane.YRotate % 180))) % 90;
                 foreach (Figure figure in plane.figureList)
                 {
                     if ((i > 16) && (i < 47))
@@ -255,36 +272,16 @@ namespace cgLabs
             {
                 Plane reversePlane = plane.getCopy();
                 reversePlane.figureList.Reverse();
-                int intColor =(int)Math.Abs(plane.XRotate % 90);
+                int intColor = (int)Math.Abs(90 - Math.Abs(Math.Min(plane.XRotate % 180, plane.YRotate % 180))) % 90;
                 foreach (Figure figure in reversePlane.figureList)
                 {
                     if ((i > 16) && (i < 47))
                         brush.Color = Color.DarkGray;
                     if (i > 46)
-                        brush.Color = Color.FromArgb(255, 63, 82, 46 + 90 - intColor);
+                        brush.Color = Color.FromArgb(255, 63, 82, 46 + intColor);
                     figure.fill(g, brush);
                     i++;
 
-                }
-            }
-        }
-
-        public void BigDraw()
-        {
-            Graphics g = this.CreateGraphics();
-            
-
-            clearGraphics(g);
-            
-            for(int i = 0; i < ScreenMatrix.GetLength(0); i++)
-            {
-                for(int j = 0; j < ScreenMatrix.GetLength(1); j++)
-                {
-                    if (ScreenMatrix[i, j] != 0)
-                    {
-                        Pen p = new Pen(Color.Black, 1);
-                        g.DrawEllipse(p, new RectangleF(i, j, 1, 1));
-                    }
                 }
             }
         }

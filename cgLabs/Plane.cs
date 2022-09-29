@@ -116,8 +116,8 @@ namespace cgLabs
                 qWingLeftD, qWingRightD, qTailThingD, qTailLeftD, qTailRightD, tEngTopLeftD, tEngTopRightD,
                 tTailLeftD, tTailRightD, qEngSlopLeftD, qEngSlopRightD
             };
-            XRotate = 0;
-            YRotate = 0;
+            XRotate = 90;
+            YRotate = 90;
         }
 
         public Plane getCopy()
