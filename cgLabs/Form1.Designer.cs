@@ -218,7 +218,7 @@
             this.TestButton.Name = "TestButton";
             this.TestButton.Size = new System.Drawing.Size(279, 59);
             this.TestButton.TabIndex = 29;
-            this.TestButton.Text = "Закрасить";
+            this.TestButton.Text = "Анимировать";
             this.TestButton.UseVisualStyleBackColor = false;
             this.TestButton.Click += new System.EventHandler(this.TestButton_Click);
             // 

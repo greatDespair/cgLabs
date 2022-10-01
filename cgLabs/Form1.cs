@@ -1,6 +1,8 @@
-﻿using System;
+﻿using cgLabs.Animation;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace cgLabs
@@ -23,88 +25,93 @@ namespace cgLabs
 
         private void button1_Click(object sender, EventArgs e)
         {
-            drawPlane();
-            reflectPlane();
-            scalePlane(4);
-            movePlaneX(150);
-            movePlaneY(150);
-            fillPlane();
+            drawNewPlane();
             projectionButton.Enabled = true;
             button1.Enabled = false;
         }
+        private void drawNewPlane()
+        {
+            drawPlane();
+            reflectPlane();
+            scalePlane(4);
+            movePlaneX(50);
+            movePlaneY(50);
+            rotatePlaneZ(135);
+            fillPlane();
 
+        }
         private void leftButton_Click(object sender, EventArgs e)
         {
             movePlaneX(-20);
-            fillPlane();
+
         }
 
         private void rightButton_Click(object sender, EventArgs e)
         {
             movePlaneX(20);
-            fillPlane();
+
         }
 
         private void upButton_Click(object sender, EventArgs e)
         {
             movePlaneY(-20);
-            fillPlane();
+
         }
 
 
         private void downButton_Click(object sender, EventArgs e)
         {
             movePlaneY(20);
-            fillPlane();
+
         }
 
         private void rotateLeft_Click(object sender, EventArgs e)
         {
             rotatePlaneX(15);
-            fillPlane();
+
         }
 
         private void rotateRight_Click(object sender, EventArgs e)
         {
             rotatePlaneX(-15);
-            fillPlane();
+
         }
 
         private void scaleDown_Click(object sender, EventArgs e)
         {
             scalePlane(0.5);
-            fillPlane();
+
         }
 
         private void scaleUp_Click(object sender, EventArgs e)
         {
             scalePlane(2);
-            fillPlane();
+
         }
 
 
         private void rotateLeftY_Click(object sender, EventArgs e)
         {
             rotatePlaneY(15);
-            fillPlane();
+
         }
 
         private void rotateRightY_Click(object sender, EventArgs e)
         {
             rotatePlaneY(-15);
-            fillPlane();
+
         }
 
         private void rotateLeftZ_Click(object sender, EventArgs e)
         {
             rotatePlaneZ(15);
-            fillPlane();
+
         }
 
         private void rotateRightZ_Click(object sender, EventArgs e)
         {
             rotatePlaneZ(-15);
-            fillPlane();
+
         }
 
         private void projectionButton_Click(object sender, EventArgs e)
@@ -119,10 +126,11 @@ namespace cgLabs
 
             clearGraphics(g);
 
-            foreach (Figure figure in plane.figureList)
-            {
-                figure.draw(g, p);
-            }
+            fillPlane();
+            /*            foreach (Figure figure in plane.figureList)
+                        {
+                            figure.draw(g, p);
+                        }*/
 
         }
         private void clearGraphics(Graphics g)
@@ -145,6 +153,7 @@ namespace cgLabs
             }
 
             Figure.ox += x;
+            fillPlane();
         }
         private void movePlaneY(int y)
         {
@@ -159,6 +168,7 @@ namespace cgLabs
             }
 
             Figure.oy += y;
+            fillPlane();
         }
         private void rotatePlaneX(int degree)
         {
@@ -171,7 +181,7 @@ namespace cgLabs
             {
                 figure.rotateX(g, p, degree);
             }
-
+            fillPlane();
         }
         private void rotatePlaneY(int degree)
         {
@@ -185,7 +195,7 @@ namespace cgLabs
             {
                 figure.rotateY(g, p, degree);
             }
-
+            fillPlane();
         }
         private void rotatePlaneZ(int degree)
         {
@@ -198,8 +208,8 @@ namespace cgLabs
             {
                 figure.rotateZ(g, p, degree);
             }
+            fillPlane();
 
-            
         }
         private void scalePlane(double scale)
         {
@@ -213,7 +223,7 @@ namespace cgLabs
                 figure.scale(g, p, scale);
             }
 
-
+            fillPlane();
         }
         private void drawProjection()
         {
@@ -245,7 +255,29 @@ namespace cgLabs
         //935,615
         private void TestButton_Click(object sender, EventArgs e)
         {
-            
+            Graphics g = this.CreateGraphics();
+            Pen p = new Pen(Color.Black, 1);
+
+            clearGraphics(g);
+
+
+
+            uint[] AnimationSequence = new uint[]
+            {
+                 1, 2, 1, 2, 1, 2, 1, 2, 1, 3, 4, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 5, 3, 4, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 3, 4,
+                 1, 2, 1, 2, 1, 2, 1, 2, 1, 3, 4, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 5, 3, 4, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 3, 4,
+                 1, 2, 1, 2, 1, 3, 4, 2, 5, 1, 2, 1, 2, 1, 2, 5, 3, 4, 2, 1, 2, 1, 2, 1, 3, 4, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2, 5, 3, 4, 6,
+                 1, 2, 1, 2, 3, 4, 6, 3, 4, 6, 3, 4, 6, 6, 3, 4, 6, 3, 4, 1, 2, 1, 2, 3, 4, 1, 2, 7, 6, 6, 6, 6, 7, 6, 6, 6, 6, 7, 6, 6, 6, 6, 7, 6, 6, 6, 6, 6, 7, 6
+            };
+
+            BaseAnimation epicFly = new BaseAnimation(AnimationSequence);
+            epicFly.Play(() => movePlaneX(5), 
+                         () => movePlaneY(5), 
+                         () => rotatePlaneX(-4), 
+                         () => rotatePlaneY(4), 
+                         () => scalePlane(1.04),
+                         () => scalePlane(1.2), 
+                         () => rotatePlaneZ(5));
         }
 
         public void fillPlane()
@@ -253,8 +285,8 @@ namespace cgLabs
             Graphics g = this.CreateGraphics();
             SolidBrush brush = new SolidBrush(Color.Gray);
             int i = 1;
-            if (((plane.XRotate > 0) && (plane.XRotate < 180)) &&
-                ((plane.YRotate > 0) && (plane.YRotate < 180)))
+            if ((((plane.XRotate - 180) % 360 > -180) && ((plane.XRotate - 180) % 360 < 180)) &&
+                (((plane.YRotate - 180) % 360 > -180) && ((plane.YRotate - 180) % 360 < 180)))
             {
                 int intColor = (int)Math.Abs(90 - Math.Abs(Math.Min(plane.XRotate % 180, plane.YRotate % 180))) % 90;
                 foreach (Figure figure in plane.figureList)
