@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace cgLabs
@@ -11,16 +12,18 @@ namespace cgLabs
     {
         double[,] ScreenMatrix;
         Plane plane;
+        Bitmap Buffer;
         public Form1()
         {
+            
             plane = new Plane();
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ScreenMatrix = new double[615, 935];
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            Buffer = new Bitmap(Screen.Width, Screen.Height);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -121,7 +124,7 @@ namespace cgLabs
 
         private void drawPlane()
         {
-            Graphics g = this.CreateGraphics();
+            Graphics g = Graphics.FromImage(Buffer);
             Pen p = new Pen(Color.Black, 1);
 
             clearGraphics(g);
@@ -142,7 +145,7 @@ namespace cgLabs
         }
         private void movePlaneX(int x)
         {
-            Graphics g = this.CreateGraphics();
+            Graphics g = Graphics.FromImage(Buffer);
             Pen p = new Pen(Color.Black, 1);
 
             clearGraphics(g);
@@ -157,7 +160,7 @@ namespace cgLabs
         }
         private void movePlaneY(int y)
         {
-            Graphics g = this.CreateGraphics();
+            Graphics g = Graphics.FromImage(Buffer);
             Pen p = new Pen(Color.Black, 1);
 
             clearGraphics(g);
@@ -172,7 +175,7 @@ namespace cgLabs
         }
         private void rotatePlaneX(int degree)
         {
-            Graphics g = this.CreateGraphics();
+            Graphics g = Graphics.FromImage(Buffer);
             Pen p = new Pen(Color.Black, 1);
 
             clearGraphics(g);
@@ -185,7 +188,7 @@ namespace cgLabs
         }
         private void rotatePlaneY(int degree)
         {
-            Graphics g = this.CreateGraphics();
+            Graphics g = Graphics.FromImage(Buffer);
             Pen p = new Pen(Color.Black, 1);
 
             clearGraphics(g);
@@ -199,7 +202,7 @@ namespace cgLabs
         }
         private void rotatePlaneZ(int degree)
         {
-            Graphics g = this.CreateGraphics();
+            Graphics g = Graphics.FromImage(Buffer);
             Pen p = new Pen(Color.Black, 1);
 
             clearGraphics(g);
@@ -213,7 +216,7 @@ namespace cgLabs
         }
         private void scalePlane(double scale)
         {
-            Graphics g = this.CreateGraphics();
+            Graphics g = Graphics.FromImage(Buffer);
             Pen p = new Pen(Color.Black, 1);
 
             clearGraphics(g);
@@ -227,7 +230,7 @@ namespace cgLabs
         }
         private void drawProjection()
         {
-            Graphics g = this.CreateGraphics();
+            Graphics g = Graphics.FromImage(Buffer);
             Pen p = new Pen(Color.Black, 1);
 
             clearGraphics(g);
@@ -241,7 +244,7 @@ namespace cgLabs
         }
         private void reflectPlane()
         {
-            Graphics g = this.CreateGraphics();
+            Graphics g = Graphics.FromImage(Buffer);
             Pen p = new Pen(Color.Black, 1);
 
             clearGraphics(g);
@@ -253,36 +256,79 @@ namespace cgLabs
 
         }
         //935,615
-        private void TestButton_Click(object sender, EventArgs e)
+        public void Play(uint[] Sequence, Action moveX, Action moveY, Action rotateX, Action rotateY, Action scale, Action bigScale, Action rotateZ)
         {
-            Graphics g = this.CreateGraphics();
+            for (int i = 0; i < Sequence.Length; i++)
+            {
+                switch (Sequence[i])
+                {
+                    case 1:
+                        moveX();
+                        break;
+                    case 2:
+                        moveY();
+                        break;
+                    case 3:
+                        rotateX();
+                        break;
+                    case 4:
+                        rotateY();
+                        break;
+                    case 5:
+                        scale();
+                        break;
+                    case 6:
+                        bigScale();
+                        break;
+                    case 7:
+                        rotateZ();
+                        break;
+                }
+                Thread.Sleep(7);
+            }
+        }
+        private async Task PlayAsync(uint[] AnimationSequence)
+        {
+            await Task.Run(() => Play(AnimationSequence,
+                         () => movePlaneX(5),
+                         () => movePlaneY(5),
+                         () => rotatePlaneX(-4),
+                         () => rotatePlaneY(4),
+                         () => scalePlane(1.04),
+                         () => scalePlane(1.2),
+                         () => rotatePlaneZ(5)));
+        }
+        private async void TestButton_Click(object sender, EventArgs e)
+        {
+            Graphics g = Graphics.FromImage(Buffer);
             Pen p = new Pen(Color.Black, 1);
 
             clearGraphics(g);
 
 
-
             uint[] AnimationSequence = new uint[]
             {
-                 1, 2, 1, 2, 1, 2, 1, 2, 1, 3, 4, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 5, 3, 4, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 3, 4,
-                 1, 2, 1, 2, 1, 2, 1, 2, 1, 3, 4, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 5, 3, 4, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 3, 4,
+                 1, 2, 1, 2, 1, 2, 1, 2, 1, 3, 4, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2,7, 1, 2, 1, 5, 3, 4, 2, 1, 2, 1, 2, 1, 7,2, 1, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 3, 4,
+                 1, 2, 1, 2, 1, 2, 1, 2, 1, 3, 4, 2,7, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 5, 3, 4, 2,7, 1, 2, 1, 2, 1, 2, 1, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 3, 4,
                  1, 2, 1, 2, 1, 3, 4, 2, 5, 1, 2, 1, 2, 1, 2, 5, 3, 4, 2, 1, 2, 1, 2, 1, 3, 4, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2, 5, 3, 4, 6,
                  1, 2, 1, 2, 3, 4, 6, 3, 4, 6, 3, 4, 6, 6, 3, 4, 6, 3, 4, 1, 2, 1, 2, 3, 4, 1, 2, 7, 6, 6, 6, 6, 7, 6, 6, 6, 6, 7, 6, 6, 6, 6, 7, 6, 6, 6, 6, 6, 7, 6
             };
 
+            await PlayAsync(AnimationSequence);
             BaseAnimation epicFly = new BaseAnimation(AnimationSequence);
-            epicFly.Play(() => movePlaneX(5), 
+            /*this.Play(AnimationSequence,
+                         () => movePlaneX(5), 
                          () => movePlaneY(5), 
                          () => rotatePlaneX(-4), 
                          () => rotatePlaneY(4), 
                          () => scalePlane(1.04),
                          () => scalePlane(1.2), 
-                         () => rotatePlaneZ(5));
+                         () => rotatePlaneZ(5));*/
         }
 
         public void fillPlane()
         {
-            Graphics g = this.CreateGraphics();
+            Graphics g = Graphics.FromImage(Buffer);
             SolidBrush brush = new SolidBrush(Color.Gray);
             int i = 1;
             if ((((plane.XRotate - 180) % 360 > -180) && ((plane.XRotate - 180) % 360 < 180)) &&
@@ -316,6 +362,7 @@ namespace cgLabs
 
                 }
             }
+            Screen.Image = Buffer;
         }
     }
 }

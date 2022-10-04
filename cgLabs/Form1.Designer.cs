@@ -49,7 +49,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.rotateRightY = new System.Windows.Forms.Button();
             this.rotateLeftY = new System.Windows.Forms.Button();
+            this.Screen = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Screen)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -298,12 +300,21 @@
             this.rotateLeftY.UseVisualStyleBackColor = true;
             this.rotateLeftY.Click += new System.EventHandler(this.rotateLeftY_Click);
             // 
+            // Screen
+            // 
+            this.Screen.Location = new System.Drawing.Point(0, 0);
+            this.Screen.Name = "Screen";
+            this.Screen.Size = new System.Drawing.Size(935, 609);
+            this.Screen.TabIndex = 23;
+            this.Screen.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(931, 870);
+            this.Controls.Add(this.Screen);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -311,6 +322,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Screen)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -337,6 +349,7 @@
         private System.Windows.Forms.Button rotateLeftY;
         private System.Windows.Forms.Button projectionButton;
         private System.Windows.Forms.Button TestButton;
+        private System.Windows.Forms.PictureBox Screen;
     }
 }
 
