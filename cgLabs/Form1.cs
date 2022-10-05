@@ -39,7 +39,7 @@ namespace cgLabs
             scalePlane(4);
             movePlaneX(50);
             movePlaneY(50);
-            rotatePlaneZ(135);
+            rotatePlaneZ(105);
             fillPlane();
 
         }
@@ -256,7 +256,8 @@ namespace cgLabs
 
         }
         //935,615
-        public void Play(uint[] Sequence, Action moveX, Action moveY, Action rotateX, Action rotateY, Action scale, Action bigScale, Action rotateZ)
+        public void Play(uint[] Sequence, Action moveX, Action moveY, Action rotateX, 
+            Action rotateY, Action scale, Action bigScale, Action rotateZ, Action moveXSmall, Action moveYBigger)
         {
             for (int i = 0; i < Sequence.Length; i++)
             {
@@ -283,6 +284,12 @@ namespace cgLabs
                     case 7:
                         rotateZ();
                         break;
+                    case 8:
+                        moveXSmall();
+                        break;
+                    case 9:
+                        moveYBigger();
+                        break;
                 }
                 Thread.Sleep(7);
             }
@@ -290,13 +297,16 @@ namespace cgLabs
         private async Task PlayAsync(uint[] AnimationSequence)
         {
             await Task.Run(() => Play(AnimationSequence,
-                         () => movePlaneX(5),
-                         () => movePlaneY(5),
+                         () => movePlaneX(7),
+                         () => movePlaneY(3),
                          () => rotatePlaneX(-4),
                          () => rotatePlaneY(4),
                          () => scalePlane(1.04),
                          () => scalePlane(1.2),
-                         () => rotatePlaneZ(5)));
+                         () => rotatePlaneZ(5),
+                         () => movePlaneX(3),
+                         () => movePlaneY(7)
+                         ));
         }
         private async void TestButton_Click(object sender, EventArgs e)
         {
@@ -308,10 +318,10 @@ namespace cgLabs
 
             uint[] AnimationSequence = new uint[]
             {
-                 1, 2, 1, 2, 1, 2, 1, 2, 1, 3, 4, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2,7, 1, 2, 1, 5, 3, 4, 2, 1, 2, 1, 2, 1, 7,2, 1, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 3, 4,
-                 1, 2, 1, 2, 1, 2, 1, 2, 1, 3, 4, 2,7, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 5, 3, 4, 2,7, 1, 2, 1, 2, 1, 2, 1, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 3, 4,
-                 1, 2, 1, 2, 1, 3, 4, 2, 5, 1, 2, 1, 2, 1, 2, 5, 3, 4, 2, 1, 2, 1, 2, 1, 3, 4, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2, 5, 3, 4, 6,
-                 1, 2, 1, 2, 3, 4, 6, 3, 4, 6, 3, 4, 6, 6, 3, 4, 6, 3, 4, 1, 2, 1, 2, 3, 4, 1, 2, 7, 6, 6, 6, 6, 7, 6, 6, 6, 6, 7, 6, 6, 6, 6, 7, 6, 6, 6, 6, 6, 7, 6
+                 1, 2, 1,1, 2, 1, 2, 1,1, 2, 1, 3,7, 4, 2, 5, 1, 2,2, 1, 2, 1,2, 2, 1, 2,7,1, 1, 2, 1, 5, 3, 4, 2,1, 1, 2, 1, 2, 1, 7,2, 1, 2, 5, 1, 2, 1, 2, 1, 2,7, 1, 2, 1, 2, 5, 3, 4,
+                 1, 2, 1, 2, 1,1, 2, 1, 2, 1, 3, 4, 2,7, 5, 1, 2, 1, 2,1, 1, 2, 1, 2,1, 8,9, 1, 5, 3, 4, 2,7, 1, 2, 1, 2, 1, 2, 1, 2, 5, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 5, 3, 4,
+                 8,9, 1, 2,7, 1, 3, 8,4, 9,2, 5, 1, 2,1, 1, 2, 8,9, 5, 3, 4, 2,8, 1, 2, 1,9, 8,9, 3, 4, 2, 5,8, 1,9, 2, 1, 2, 1, 2, 1, 2, 5, 3, 4, 6,
+                 8,9, 8,9, 3, 4, 6, 3, 4, 6, 3, 4, 6, 6, 3, 4, 6, 3, 4, 1, 2, 1, 2, 3, 4, 8,9, 7, 6, 6, 6, 6, 7,8,9, 6, 6, 6, 6, 7, 6, 6, 6, 6, 7, 6, 6, 6, 6, 6, 7, 6
             };
 
             await PlayAsync(AnimationSequence);
